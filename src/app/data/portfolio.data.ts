@@ -70,7 +70,7 @@ export const LINKS = {
 export const HERO = {
   eyebrow: 'Full stack developer',
   location: 'Vapi, Gujarat',
-  handle: '// Ankit Gupta',
+  handle: 'Ankit Gupta',
   headlineLine1: 'I build systems',
   headlineLine2: 'that scale.',
   subhead: 'Not just features that ship.',
