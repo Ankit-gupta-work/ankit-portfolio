@@ -1,0 +1,17 @@
+<section id="contact" style="position: relative; padding: 120px 0 96px; border-top: 1px solid var(--b1); overflow: hidden; scroll-margin-top: 40px">
+  <div aria-hidden="true" style="position: absolute; left: -200px; bottom: -300px; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(closest-side, var(--glow-c), transparent); pointer-events: none"></div>
+  <div class="wrap" style="position: relative">
+    <h2 class="rv h1" appReveal style="margin: 0; font-size: 64px; font-weight: 600; letter-spacing: -0.035em; line-height: 1.05">Get in touch.</h2>
+
+    <div class="rv" appReveal style="margin-top: 56px; border-top: 1px solid var(--b)">
+      @for (row of rows; track row.label) {
+        <a class="crow" [href]="row.href">
+          <span style="font-size: 14px; color: var(--t2)">{{ row.label }}</span>
+          <span class="arr">→</span>
+          <span style="font-size: 18px; font-weight: 500; overflow-wrap: anywhere">{{ row.display }}</span>
+          <span aria-hidden="true" style="font-size: 14px">↗</span>
+        </a>
+      }
+    </div>
+  </div>
+</section>

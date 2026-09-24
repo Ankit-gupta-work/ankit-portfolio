@@ -1,0 +1,39 @@
+<section id="think" style="padding: 96px 0; border-top: 1px solid var(--b1); scroll-margin-top: 40px">
+  <div class="wrap">
+    <div class="rv" appReveal style="margin-bottom: 40px; display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap">
+      <div>
+        <p class="eyebrow">How I think</p>
+        <h2 class="h2">Three decisions from JobPing.</h2>
+      </div>
+      <p style="margin: 0; max-width: 360px; font-size: 15px; line-height: 1.7; color: var(--t2)">Every piece of infrastructure has to earn its place. Here's why these did.</p>
+    </div>
+
+    <div class="g3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
+      @for (card of cards; track card.titleMono) {
+        <article class="think rvs" appReveal style="padding: 28px; box-sizing: border-box; display: flex; flex-direction: column">
+          <h3 style="margin: 0; font-size: 20px; font-weight: 600; letter-spacing: -0.02em">{{ card.titlePrefix }}<span class="mono" style="font-weight: 500; color: var(--t1)">{{ card.titleMono }}</span>{{ card.titleSuffix }}</h3>
+          <p class="eyebrow" style="margin-top: 24px; font-size: 11px">The problem</p>
+          <p style="margin: 8px 0 0; font-size: 15px; line-height: 1.7; color: var(--t2)">{{ card.problem }}</p>
+          <div style="margin: 20px 0; border-top: 1px dashed var(--b)"></div>
+          <p class="eyebrow" style="font-size: 11px; color: var(--t1)">The decision</p>
+          <p style="margin: 8px 0 0; font-size: 15px; line-height: 1.7; color: var(--t1)">{{ card.decision }}</p>
+          @if (card.kind === 'diff') {
+            <div class="mono" style="margin-top: auto; padding-top: 24px; display: flex; flex-direction: column; gap: 6px; font-size: 12px">
+              @for (line of card.diffLines; track line.text) {
+                <div [style.color]="line.kind === 'minus' ? 'var(--t2)' : line.kind === 'plus' ? 'var(--code)' : 'var(--t2)'">
+                  <span [style.color]="line.kind === 'plus' ? 'var(--ok)' : 'var(--t3)'">{{ line.sign }}</span> {{ line.text }}
+                </div>
+              }
+            </div>
+          } @else {
+            <div style="margin-top: auto; padding-top: 24px; display: flex; flex-wrap: wrap; gap: 6px">
+              @for (chip of card.chips; track chip) {
+                <span class="chip">{{ chip }}</span>
+              }
+            </div>
+          }
+        </article>
+      }
+    </div>
+  </div>
+</section>

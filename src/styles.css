@@ -29,6 +29,17 @@ a:hover{color:inherit}
 
 .fu{animation:fadeUp .7s var(--ease) both}
 
+/* nav-style underline link, shared by nav and footer */
+.nl{position:relative;font-size:14px;color:var(--t2);transition:color .3s var(--ease);padding:6px 0}
+.nl::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--t1);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.nl:hover{color:var(--t1)}
+.nl:hover::after{transform:scaleX(1)}
+
+/* small status indicators shared across nav, hero, currently-building and projects */
+.dot{width:7px;height:7px;border-radius:50%;background:var(--ok);flex-shrink:0}
+.pulse{animation:pulse 2s ease-in-out infinite}
+.spin{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--b);border-top-color:var(--ok);box-sizing:border-box;animation:spin 1s linear infinite}
+
 .ic-moon,.ic-sun{display:inline-flex}.ic-moon{display:none}.pf.light .ic-moon{display:inline-flex}.pf.light .ic-sun{display:none}
 
 @media (hover:hover) and (pointer:fine){.pf.cc,.pf.cc a,.pf.cc button{cursor:none}}

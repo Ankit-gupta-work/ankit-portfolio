@@ -1,0 +1,9 @@
+.dots{background-image:radial-gradient(var(--grid) 1px,transparent 1px);background-size:24px 24px;-webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,#000 30%,transparent 80%);mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,#000 30%,transparent 80%)}
+
+@media (max-width: 1020px){
+  .hero-grid{grid-template-columns:minmax(0,1fr) !important;min-height:0 !important}
+}
+@media (max-width: 720px){
+  .stats{flex-direction:column;align-items:flex-start !important;gap:20px !important}
+  .stats .vd{display:none}
+}

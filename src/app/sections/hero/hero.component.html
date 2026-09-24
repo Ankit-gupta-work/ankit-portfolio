@@ -1,0 +1,50 @@
+<section id="top" style="position: relative; overflow: hidden; border-bottom: 1px solid var(--b1); margin-top: -64px; padding-top: 64px">
+  <div class="dots" aria-hidden="true" style="position: absolute; inset: 0"></div>
+  <div aria-hidden="true" style="position: absolute; left: -240px; top: -260px; width: 820px; height: 820px; border-radius: 50%; background: radial-gradient(closest-side, var(--glow-c), transparent); pointer-events: none"></div>
+  <div aria-hidden="true" style="position: absolute; right: -260px; bottom: -320px; width: 760px; height: 760px; border-radius: 50%; background: radial-gradient(closest-side, var(--glow-c), transparent); pointer-events: none"></div>
+
+  <div class="wrap hero-grid" style="position: relative; min-height: 800px; display: grid; grid-template-columns: minmax(0, 1fr) 520px; gap: 56px; align-items: center; padding-top: 64px; padding-bottom: 88px">
+
+    <div style="display: flex; flex-direction: column">
+      <p class="eyebrow fu" style="animation-delay: 0ms">{{ hero.eyebrow }}<span class="sep">·</span>{{ hero.location }}</p>
+      <p class="mono fu" style="margin: 14px 0 0; font-size: 14px; font-weight: 400; color: var(--t3); animation-delay: 40ms">{{ hero.handle }}</p>
+      <h1 class="h1" style="margin: 28px 0 0; font-size: 80px; line-height: 1.02; font-weight: 600; letter-spacing: -0.035em">
+        <span class="fu" style="display: block; animation-delay: 80ms">{{ hero.headlineLine1 }}</span>
+        <span class="fu" style="display: block; animation-delay: 160ms; color: var(--t1); font-style: italic; font-weight: 500; padding-bottom: 6px">{{ hero.headlineLine2 }}</span>
+      </h1>
+      <p class="fu" style="margin: 20px 0 0; font-size: 18px; line-height: 1.7; color: var(--t2); animation-delay: 240ms">{{ hero.subhead }}</p>
+      <div class="fu mono" style="margin-top: 32px; display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: var(--t2); animation-delay: 320ms">
+        @for (line of hero.stackLines; track $index) {
+          <div>
+            @for (item of line; track item; let last = $last) {
+              {{ item }}@if (!last) {<span class="sep">·</span>}
+            }
+          </div>
+        }
+      </div>
+      <div class="fu" style="margin-top: 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; animation-delay: 400ms">
+        <a class="btn btn-p" href="#building">View JobPing
+          <svg class="ic" width="14" height="14" aria-hidden="true"><path d="M2.5 7h9M8 3.5L11.5 7L8 10.5" style="fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round"></path></svg>
+        </a>
+        <a class="btn btn-g" [href]="links.github">GitHub
+          <svg class="ic" width="14" height="14" aria-hidden="true"><path d="M4 10L10 4M5 4h5v5" style="fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round"></path></svg>
+        </a>
+        <a class="btn btn-t" [href]="links.resume">Resume</a>
+      </div>
+      <div class="fu stats" style="margin-top: 56px; display: flex; align-items: stretch; gap: 32px; animation-delay: 480ms">
+        @for (stat of hero.stats; track stat.value; let last = $last) {
+          <div>
+            <div style="font-size: 22px; font-weight: 600; letter-spacing: -0.02em">{{ stat.value }}</div>
+            <div style="margin-top: 4px; font-size: 13px; line-height: 1.5; color: var(--t2)" [innerHTML]="stat.label"></div>
+          </div>
+          @if (!last) {
+            <div class="vd" style="width: 1px; background: var(--b)"></div>
+          }
+        }
+      </div>
+    </div>
+
+    <app-arch-diagram></app-arch-diagram>
+
+  </div>
+</section>

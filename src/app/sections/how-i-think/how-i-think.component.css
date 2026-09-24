@@ -1,0 +1,7 @@
+.think{background-color:var(--surface);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:20px 20px;border:1px solid var(--b);border-radius:14px;transition:border-color .5s var(--ease)}
+.think:hover{border-color:var(--bh)}
+.chip{display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;background:var(--bg);border:1px solid var(--b);font-family:var(--mono);font-size:12px;color:var(--code)}
+
+@media (max-width: 1020px){
+  .g3{grid-template-columns:minmax(0,1fr) !important}
+}

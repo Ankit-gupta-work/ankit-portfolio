@@ -1,0 +1,26 @@
+<section id="stack" style="padding: 96px 0; border-top: 1px solid var(--b1); scroll-margin-top: 40px">
+  <div class="wrap">
+    <div class="rv" appReveal style="margin-bottom: 40px">
+      <p class="eyebrow">Stack</p>
+      <h2 class="h2">What I work with</h2>
+    </div>
+
+    <div style="border-bottom: 1px solid var(--b)">
+      @for (row of rows; track row.label) {
+        <div class="srow rvl" appReveal style="display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 24px; align-items: baseline; padding: 24px 0; border-top: 1px solid var(--b)">
+          <span style="font-size: 14px; color: var(--t2)">{{ row.label }}</span>
+          <span [style.color]="row.dim ? 'var(--t2)' : 'var(--t1)'" style="font-size: 20px; font-weight: 500; letter-spacing: -0.01em">
+            @for (item of row.items; track item; let last = $last) {
+              {{ item }}@if (!last) {<span class="sep">·</span>}
+            }
+          </span>
+        </div>
+      }
+    </div>
+
+    <figure class="rv" appReveal style="margin: 48px 0 0; padding: 32px 36px; border-radius: 14px; background: var(--elev); border: 1px solid var(--b); border-left: 2px solid var(--accent)">
+      <p class="eyebrow" style="color: var(--t1)">{{ quote.eyebrow }}</p>
+      <blockquote style="margin: 16px 0 0; max-width: 860px; font-size: 19px; line-height: 1.75; font-style: italic; font-weight: 500; color: var(--t1)">&ldquo;{{ quote.quote }}&rdquo;</blockquote>
+    </figure>
+  </div>
+</section>

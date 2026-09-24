@@ -1,0 +1,6 @@
+@media (max-width: 1020px){
+  .build{grid-template-columns:minmax(0,1fr) !important}
+}
+@media (max-width: 720px){
+  .build{padding:24px !important}
+}

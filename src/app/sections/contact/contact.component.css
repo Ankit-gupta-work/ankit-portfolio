@@ -1,0 +1,8 @@
+.crow{display:grid;grid-template-columns:140px 40px minmax(0,1fr) 24px;align-items:center;min-height:76px;border-bottom:1px solid var(--b);color:var(--t2);transition:color .35s var(--ease),border-color .35s var(--ease)}
+.crow:hover{color:var(--t1);border-color:var(--bh)}
+.crow .arr{display:inline-block;transition:transform .4s var(--ease),color .4s var(--ease)}
+.crow:hover .arr{transform:translateX(4px);color:var(--t1)}
+
+@media (max-width: 720px){
+  .crow{grid-template-columns:90px 28px minmax(0,1fr) 20px}
+}

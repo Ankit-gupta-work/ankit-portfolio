@@ -1,0 +1,22 @@
+<div style="display: flex; flex-direction: column; border-radius: 12px; border: 1px solid var(--b); background: var(--bg); overflow: hidden">
+  <div style="height: 40px; padding: 0 14px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--b); background: var(--surface)">
+    <div style="display: flex; align-items: center; gap: 10px">
+      <span class="spin"></span>
+      <span class="mono" style="font-size: 12px; color: var(--t2)">{{ data.terminalTitle }}</span>
+    </div>
+    <span class="mono" style="display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--ok)"><span class="dot" style="width: 6px; height: 6px"></span>running</span>
+  </div>
+  <div style="position: relative; flex-grow: 1; padding: 18px 16px 12px; display: flex; flex-direction: column; justify-content: flex-end">
+    <div style="position: relative; height: 130px; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 40%); mask-image: linear-gradient(to bottom, transparent 0, #000 40%)">
+      <div class="log-track">
+        @for (line of data.logLines; track $index) {
+          <div class="ll"><span class="ts">{{ line.ts }}</span>{{ line.text }}@if (line.ok) { <span style="color: var(--ok)">✓</span> }</div>
+        }
+        @for (line of data.logLines; track $index) {
+          <div class="ll"><span class="ts">{{ line.ts }}</span>{{ line.text }}@if (line.ok) { <span style="color: var(--ok)">✓</span> }</div>
+        }
+      </div>
+    </div>
+    <div class="ll" style="margin-top: 6px; color: var(--t2)">{{ data.waitingText }}<span class="caret"></span></div>
+  </div>
+</div>

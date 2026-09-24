@@ -1,0 +1,48 @@
+<div class="diagram" role="img" [attr.aria-label]="diagram.ariaLabel" style="position: relative; width: 520px; height: 520px; justify-self: end">
+  <svg width="520" height="520" aria-hidden="true" style="position: absolute; left: 0; top: 0; overflow: visible">
+    <path class="wire" d="M140 30 L140 232 Q140 252 160 252 L390 252 L390 386 Q390 406 370 406 L140 406 L140 490" style="fill: none; stroke: var(--bh); stroke-width: 1.5"></path>
+    <path class="wire-flow" d="M140 30 L140 232 Q140 252 160 252 L390 252 L390 386 Q390 406 370 406 L140 406 L140 490" style="fill: none; stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 2 10; opacity: .45"></path>
+  </svg>
+  <span class="pkt" style="animation-delay: 2000ms"></span>
+  <span class="pkt" style="animation-delay: 3500ms"></span>
+  <span class="pkt" style="animation-delay: 5000ms"></span>
+
+  <div class="mono" style="position: absolute; left: 40px; top: 0; width: 200px; height: 30px; box-sizing: border-box; border: 1px dashed var(--bh); border-radius: 999px; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--t2); animation: fadeIn .6s ease .6s both">{{ diagram.sourcesLabel }}</div>
+
+  <div class="mono" style="position: absolute; left: 154px; top: 170px; font-size: 11px; color: var(--code); animation: fadeIn .6s ease 1.6s both">{{ diagram.publishLabel }}</div>
+  <div class="mono" style="position: absolute; left: 402px; top: 322px; font-size: 11px; color: var(--code); animation: fadeIn .6s ease 1.8s both">{{ diagram.consumeLabel }}</div>
+
+  <div class="node" style="left: 40px; top: 60px; animation: nodeIn .6s var(--ease) .6s both, nodePulse 4.5s ease-in-out 2.4s infinite">
+    <div style="display: flex; align-items: center; justify-content: space-between">
+      <span class="mono" style="font-size: 10px; letter-spacing: .08em; color: var(--t2)">{{ diagram.nodes[0].index }}</span>
+      <span class="dot"></span>
+    </div>
+    <div style="margin-top: 6px; font-size: 15px; font-weight: 600; letter-spacing: -0.01em; color: var(--code)">{{ diagram.nodes[0].title }}</div>
+    <div class="mono" style="margin-top: 2px; font-size: 11px; color: var(--t2)">{{ diagram.nodes[0].sub }}</div>
+  </div>
+
+  <div class="node" style="left: 290px; top: 214px; animation: nodeIn .6s var(--ease) .75s both, nodePulse 4.5s ease-in-out 3.9s infinite">
+    <div style="display: flex; align-items: center; justify-content: space-between">
+      <span class="mono" style="font-size: 10px; letter-spacing: .08em; color: var(--t2)">{{ diagram.nodes[1].index }}</span>
+      <div aria-hidden="true" style="display: flex; align-items: flex-end; gap: 2px; height: 12px">
+        <span class="bar" style="height: 12px; animation-delay: 0ms"></span>
+        <span class="bar" style="height: 12px; animation-delay: 200ms"></span>
+        <span class="bar" style="height: 12px; animation-delay: 400ms"></span>
+        <span class="bar" style="height: 12px; animation-delay: 600ms"></span>
+      </div>
+    </div>
+    <div style="margin-top: 6px; font-size: 15px; font-weight: 600; letter-spacing: -0.01em">{{ diagram.nodes[1].title }}</div>
+    <div class="mono" style="margin-top: 2px; font-size: 11px; color: var(--t2)">{{ diagram.nodes[1].sub }}</div>
+  </div>
+
+  <div class="node" style="left: 40px; top: 368px; animation: nodeIn .6s var(--ease) .9s both, nodePulse 4.5s ease-in-out 5.4s infinite">
+    <div style="display: flex; align-items: center; justify-content: space-between">
+      <span class="mono" style="font-size: 10px; letter-spacing: .08em; color: var(--t2)">{{ diagram.nodes[2].index }}</span>
+      <span class="spin" style="width: 12px; height: 12px"></span>
+    </div>
+    <div style="margin-top: 6px; font-size: 15px; font-weight: 600; letter-spacing: -0.01em">{{ diagram.nodes[2].title }}</div>
+    <div class="mono" style="margin-top: 2px; font-size: 11px; color: var(--t2)">{{ diagram.nodes[2].sub }}</div>
+  </div>
+
+  <div class="mono" style="position: absolute; left: 40px; top: 490px; width: 200px; height: 30px; box-sizing: border-box; border: 1px solid var(--b); border-radius: 999px; background: var(--surface); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 11px; color: var(--t1); animation: fadeIn .6s ease 1.9s both"><span class="dot" style="width: 6px; height: 6px"></span>{{ diagram.alertsLabel }}</div>
+</div>
