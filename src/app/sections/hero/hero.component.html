@@ -15,11 +15,7 @@
       <p class="fu" style="margin: 20px 0 0; font-size: 18px; line-height: 1.7; color: var(--t2); animation-delay: 240ms">{{ hero.subhead }}</p>
       <div class="fu mono" style="margin-top: 32px; display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: var(--t2); animation-delay: 320ms">
         @for (line of hero.stackLines; track $index) {
-          <div>
-            @for (item of line; track item; let last = $last) {
-              {{ item }}@if (!last) {<span class="sep">·</span>}
-            }
-          </div>
+          <div>@for (item of line; track item; let last = $last) {{{ item }}@if (!last) {<span class="sep">·</span>}}</div>
         }
       </div>
       <div class="fu" style="margin-top: 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; animation-delay: 400ms">
