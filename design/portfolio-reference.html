@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ankit Gupta — Full Stack Developer</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,500;1,600&amp;display=swap">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#0a0a0a;color:#ffffff;font-family:'Plus Jakarta Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+a:hover{color:inherit}
+
+/* ---- theme tokens: dark (default) ---- */
+.pf{
+  --bg:#0a0a0a;--surface:#111111;--elev:#1a1a1a;--node:#1a1a1a;
+  --b1:rgba(255,255,255,.05);--b:rgba(255,255,255,.08);--bh:rgba(255,255,255,.18);
+  --t1:#ffffff;--t2:#888888;--t3:#555555;
+  --accent:#ffffff;--on-accent:#0a0a0a;
+  --code:#a3e635;--ok:#22c55e;
+  --grid:rgba(255,255,255,.03);--glow-c:rgba(255,255,255,.035);
+  --hov:rgba(255,255,255,.06);--shadow:rgba(0,0,0,.7);
+  --nav-bg:rgba(10,10,10,.8);--sel:rgba(255,255,255,.2);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+}
+/* ---- light ---- */
+.pf.light{
+  --bg:#ffffff;--surface:#f5f5f5;--elev:#ececec;--node:#ffffff;
+  --b1:rgba(0,0,0,.05);--b:rgba(0,0,0,.08);--bh:rgba(0,0,0,.18);
+  --t1:#0a0a0a;--t2:#666666;--t3:#999999;
+  --accent:#0a0a0a;--on-accent:#ffffff;
+  --code:#16a34a;--ok:#16a34a;
+  --grid:rgba(0,0,0,.03);--glow-c:rgba(0,0,0,.025);
+  --hov:rgba(0,0,0,.05);--shadow:rgba(0,0,0,.12);
+  --nav-bg:rgba(255,255,255,.8);--sel:rgba(0,0,0,.12);
+}
+.pf ::selection{background:var(--sel)}
+/* smooth 200ms theme switch (only while switching, so hover motion stays intact) */
+.pf.theming,.pf.theming *,.pf.theming *::before,.pf.theming *::after{transition:background-color .2s ease,color .2s ease,border-color .2s ease,box-shadow .2s ease,fill .2s ease,stroke .2s ease !important}
+
+.wrap{max-width:1200px;margin:0 auto;padding:0 48px;box-sizing:border-box}
+.mono{font-family:var(--mono)}
+.eyebrow{margin:0;font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--t2)}
+.h2{margin:14px 0 0;font-size:44px;line-height:1.08;font-weight:600;letter-spacing:-.03em;color:var(--t1)}
+.sep{color:var(--t3);padding:0 10px}
+
+/* nav */
+.nav{background:transparent;border-bottom:1px solid transparent;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.nl{position:relative;font-size:14px;color:var(--t2);transition:color .3s var(--ease);padding:6px 0}
+.nl::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--t1);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.nl:hover{color:var(--t1)}
+.nl:hover::after{transform:scaleX(1)}
+.tgl{width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;padding:0;border-radius:999px;border:1px solid var(--b);background:var(--surface);color:var(--t2);cursor:pointer;transition:color .3s var(--ease),border-color .3s var(--ease),transform .4s var(--ease)}
+.tgl:hover{color:var(--t1);border-color:var(--bh)}
+.tgl:active{transform:rotate(-20deg) scale(.94)}
+.tgl:focus-visible{outline:2px solid var(--t1);outline-offset:2px}
+.status{position:relative;display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 14px;border-radius:999px;border:1px solid var(--b);background:var(--surface);font-size:13px;color:var(--t1);outline:none}
+.tip{position:absolute;top:calc(100% + 10px);right:0;white-space:nowrap;padding:8px 12px;border-radius:8px;background:var(--elev);border:1px solid var(--bh);font-size:12px;color:var(--t2);opacity:0;transform:translateY(-4px);pointer-events:none;transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.status:hover .tip,.status:focus-visible .tip{opacity:1;transform:translateY(0)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--ok);flex-shrink:0}
+.pulse{animation:pulse 2s ease-in-out infinite}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:10px;font-size:14px;font-weight:500;transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .4s var(--ease),background .4s var(--ease),opacity .4s var(--ease)}
+.btn:hover{transform:translateY(-2px)}
+.btn-p{background:var(--accent);color:var(--on-accent)}
+.btn-p:hover{color:var(--on-accent);box-shadow:0 10px 30px -10px var(--bh),0 0 0 4px var(--hov)}
+.btn-g{border:1px solid var(--b);color:var(--t1);background:transparent}
+.btn-g:hover{color:var(--t1);border-color:var(--bh);background:var(--hov)}
+.btn-t{color:var(--t2);padding:0 8px}
+.btn-t:hover{color:var(--t1)}
+.btn .ic{transition:transform .4s var(--ease)}
+.btn:hover .ic{transform:translateX(3px)}
+
+/* hero */
+.fu{animation:fadeUp .7s var(--ease) both}
+.dots{background-image:radial-gradient(var(--grid) 1px,transparent 1px);background-size:24px 24px;-webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,#000 30%,transparent 80%);mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,#000 30%,transparent 80%)}
+.node{position:absolute;box-sizing:border-box;width:200px;height:76px;padding:12px 14px;border-radius:12px;background:var(--node);color:var(--t1);border:1px solid var(--bh);box-shadow:0 20px 40px -20px var(--shadow)}
+.wire{stroke-dasharray:1000;animation:draw 1.5s var(--ease) .9s both}
+.wire-flow{animation:fadeIn .6s ease 2s both,dash 1.4s linear 2s infinite}
+.pkt{position:absolute;left:0;top:0;width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px 1px var(--bh);opacity:0;offset-path:path("M140 30 L140 232 Q140 252 160 252 L390 252 L390 386 Q390 406 370 406 L140 406 L140 490");offset-rotate:0deg;animation:flow 4.5s linear infinite both}
+.bar{width:4px;border-radius:2px;background:var(--ok);opacity:.8;transform-origin:bottom;animation:q 1.8s ease-in-out infinite}
+
+/* building */
+.spin{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--b);border-top-color:var(--ok);box-sizing:border-box;animation:spin 1s linear infinite}
+.log-track{animation:logScroll 15s var(--ease) infinite}
+.ll{height:26px;line-height:26px;white-space:nowrap;font-family:var(--mono);font-size:12.5px;color:var(--t1)}
+.ts{color:var(--t3);margin-right:8px}
+.caret{display:inline-block;width:7px;height:14px;background:var(--t1);vertical-align:-2px;margin-left:4px;animation:blink 1s steps(1) infinite}
+
+/* cards */
+.card{position:relative;background:var(--surface);border:1px solid var(--b);border-radius:16px;transition:border-color .5s var(--ease),box-shadow .5s var(--ease),transform .5s var(--ease)}
+.card:hover{border-color:var(--bh);box-shadow:0 30px 80px -40px var(--shadow)}
+.card .arr{display:inline-block;transition:transform .45s var(--ease)}
+.card:hover .arr{transform:translateX(4px)}
+.lnk{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:var(--t2);transition:color .3s var(--ease)}
+.lnk:hover{color:var(--t1)}
+.lnk-a{color:var(--t1)}
+.lnk-a:hover{color:var(--t1);opacity:.75}
+.tag{display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:6px;border:1px solid var(--b);background:var(--bg);font-family:var(--mono);font-size:12px;color:var(--t2)}
+.code{font-family:var(--mono);font-size:.88em;padding:2px 7px;border-radius:6px;background:var(--bg);border:1px solid var(--b);color:var(--code);white-space:nowrap}
+.kw{color:var(--code);font-weight:500}
+.pn{color:var(--t2)}
+.pipe{opacity:.5;transform:translateX(8px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.card:hover .pipe{opacity:1;transform:translateX(0)}
+
+/* think */
+.think{background-color:var(--surface);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:20px 20px;border:1px solid var(--b);border-radius:14px;transition:border-color .5s var(--ease)}
+.think:hover{border-color:var(--bh)}
+.chip{display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;background:var(--bg);border:1px solid var(--b);font-family:var(--mono);font-size:12px;color:var(--code)}
+
+/* contact */
+.crow{display:grid;grid-template-columns:140px 40px minmax(0,1fr) 24px;align-items:center;min-height:76px;border-bottom:1px solid var(--b);color:var(--t2);transition:color .35s var(--ease),border-color .35s var(--ease)}
+.crow:hover{color:var(--t1);border-color:var(--bh)}
+.crow .arr{display:inline-block;transition:transform .4s var(--ease),color .4s var(--ease)}
+.crow:hover .arr{transform:translateX(4px);color:var(--t1)}
+
+/* cursor + progress */
+.cur{position:fixed;left:-14px;top:-14px;width:28px;height:28px;border-radius:50%;border:1px solid var(--bh);box-sizing:border-box;pointer-events:none;z-index:100;opacity:0;display:flex;align-items:center;justify-content:center;transition:transform .12s linear,width .35s var(--ease),height .35s var(--ease),left .35s var(--ease),top .35s var(--ease),background .35s var(--ease),opacity .3s}
+.cur-dot{width:4px;height:4px;border-radius:50%;background:var(--t1);transition:opacity .25s}
+.cur[data-hover="1"]{width:44px;height:44px;left:-22px;top:-22px;background:var(--hov)}
+.cur[data-hover="1"] .cur-dot{opacity:0}
+.prog{position:fixed;left:0;top:0;height:1px;width:100%;background:var(--t1);transform-origin:left;transform:scaleX(0);z-index:60;display:none}
+@media (hover:hover) and (pointer:fine){.pf.cc,.pf.cc a,.pf.cc button{cursor:none}}
+@media (hover:none),(pointer:coarse){.cur{display:none}}
+
+/* scroll-driven reveals (no JS) */
+@supports (animation-timeline: view()){
+  .rv{animation:revUp linear both;animation-timeline:view();animation-range:entry 0% entry 35%}
+  .rvl{animation:revLeft linear both;animation-timeline:view();animation-range:entry 0% entry 60%}
+  .rvs{animation:revScale linear both;animation-timeline:view();animation-range:entry 0% entry 45%}
+  .prog{display:block;animation:grow linear both;animation-timeline:scroll(root)}
+  .nav{animation:navOn linear both;animation-timeline:scroll(root);animation-range:0px 80px}
+}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes draw{from{stroke-dashoffset:1000}to{stroke-dashoffset:0}}
+@keyframes dash{to{stroke-dashoffset:-24}}
+@keyframes flow{0%{offset-distance:0%;opacity:0}6%{opacity:1}94%{opacity:1}100%{offset-distance:100%;opacity:0}}
+@keyframes pulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 color-mix(in srgb,var(--ok) 45%,transparent)}50%{transform:scale(1.3);box-shadow:0 0 0 5px transparent}}
+@keyframes nodeIn{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes nodePulse{0%,80%,100%{border-color:var(--bh);box-shadow:0 20px 40px -20px var(--shadow)}88%{border-color:var(--t2);box-shadow:0 0 0 4px var(--hov),0 20px 40px -20px var(--shadow)}}
+@keyframes q{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes blink{50%{opacity:0}}
+@keyframes logScroll{0%,16%{transform:translateY(0)}20%,36%{transform:translateY(-26px)}40%,56%{transform:translateY(-52px)}60%,76%{transform:translateY(-78px)}80%,96%{transform:translateY(-104px)}100%{transform:translateY(-130px)}}
+@keyframes revUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes revLeft{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}
+@keyframes revScale{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+@keyframes grow{to{transform:scaleX(1)}}
+@keyframes navOn{to{background:var(--nav-bg);border-bottom-color:var(--b)}}
+
+.still *,.still *::after{animation:none !important;transition:none !important}
+.still .pkt{display:none}
+@media (prefers-reduced-motion: reduce){
+  .pf *,.pf *::after{animation:none !important;transition:none !important}
+  .pf .pkt{display:none}
+  html{scroll-behavior:auto}
+}
+
+@media (max-width: 1020px){
+  .hero-grid{grid-template-columns:minmax(0,1fr) !important;min-height:0 !important}
+  .diagram{transform:scale(.8);transform-origin:top left;justify-self:start !important;margin-bottom:-100px}
+  .build,.feat{grid-template-columns:minmax(0,1fr) !important}
+  .g2,.g3{grid-template-columns:minmax(0,1fr) !important}
+}
+@media (max-width: 720px){
+  .wrap{padding:0 20px}
+  .navlinks{display:none !important}
+  .h1{font-size:48px !important}
+  .h2{font-size:32px}
+  .stats{flex-direction:column;align-items:flex-start !important;gap:20px !important}
+  .stats .vd{display:none}
+  .srow{grid-template-columns:minmax(0,1fr) !important;gap:8px !important}
+  .crow{grid-template-columns:90px 28px minmax(0,1fr) 20px}
+  .diagram{transform:scale(.62);margin-bottom:-200px}
+  .build{padding:24px !important}
+}
+.ic-moon,.ic-sun{display:inline-flex}.ic-moon{display:none}.pf.light .ic-moon{display:inline-flex}.pf.light .ic-sun{display:none}
+</style>
+</head>
+<body>
+<div class="pf cc" id="app" style="width: 100%; background: var(--bg); color: var(--t1); position: relative; overflow-x: clip">
+
+<div class="prog" aria-hidden="true"></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" style="position: sticky; top: 0; z-index: 50">
+<div class="wrap" style="height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 24px">
+<a href="#top" aria-label="Ankit Gupta, back to top" style="display: flex; align-items: center; gap: 12px">
+<span style="width: 32px; height: 32px; border-radius: 8px; background: var(--elev); border: 1px solid var(--bh); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; letter-spacing: .02em; color: var(--accent)">AG</span>
+<span style="font-size: 14px; font-weight: 400; color: var(--t1)">Ankit Gupta</span>
+</a>
+<nav class="navlinks" aria-label="Primary" style="display: flex; align-items: center; gap: 36px">
+<a class="nl" href="#work">Work</a>
+<a class="nl" href="#stack">Stack</a>
+<a class="nl" href="#think">About</a>
+<a class="nl" href="#contact">Contact</a>
+</nav>
+<div style="display: flex; align-items: center; gap: 12px">
+<button class="tgl" type="button" id="themeToggle" aria-label="Switch to light theme" title="Switch to light theme">
+<span class="ic-moon">
+<svg width="16" height="16" aria-hidden="true"><path d="M13.5 9.6A5.6 5.6 0 0 1 6.4 2.5a5.6 5.6 0 1 0 7.1 7.1z" style="fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round"></path></svg>
+</span>
+<span class="ic-sun">
+<svg width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="3" style="fill: none; stroke: currentColor; stroke-width: 1.5"></circle><path d="M8 1.5v1.3M8 13.2v1.3M1.5 8h1.3M13.2 8h1.3M3.4 3.4l.9.9M11.7 11.7l.9.9M3.4 12.6l.9-.9M11.7 4.3l.9-.9" style="fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round"></path></svg>
+</span>
+</button>
+<span class="status" tabindex="0">
+<span class="dot pulse"></span>
+<span>Available Oct 2026</span>
+<span class="tip" role="tooltip">Full-time from October 2026</span>
+</span>
+</div>
+</div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="top" style="position: relative; overflow: hidden; border-bottom: 1px solid var(--b1); margin-top: -64px; padding-top: 64px">
+<div class="dots" aria-hidden="true" style="position: absolute; inset: 0"></div>
+<div aria-hidden="true" style="position: absolute; left: -240px; top: -260px; width: 820px; height: 820px; border-radius: 50%; background: radial-gradient(closest-side, var(--glow-c), transparent); pointer-events: none"></div>
+<div aria-hidden="true" style="position: absolute; right: -260px; bottom: -320px; width: 760px; height: 760px; border-radius: 50%; background: radial-gradient(closest-side, var(--glow-c), transparent); pointer-events: none"></div>
+
+<div class="wrap hero-grid" style="position: relative; min-height: 800px; display: grid; grid-template-columns: minmax(0, 1fr) 520px; gap: 56px; align-items: center; padding-top: 64px; padding-bottom: 88px">
+
+<div style="display: flex; flex-direction: column">
+<p class="eyebrow fu" style="animation-delay: 0ms">Full stack developer<span class="sep">·</span>Vapi, Gujarat</p>
+<p class="mono fu" style="margin: 14px 0 0; font-size: 14px; font-weight: 400; color: var(--t3); animation-delay: 40ms">// Ankit Gupta</p>
+<h1 class="h1" style="margin: 28px 0 0; font-size: 80px; line-height: 1.02; font-weight: 600; letter-spacing: -0.035em">
+<span class="fu" style="display: block; animation-delay: 80ms">I build systems</span>
+<span class="fu" style="display: block; animation-delay: 160ms; color: var(--t1); font-style: italic; font-weight: 500; padding-bottom: 6px">that scale.</span>
+</h1>
+<p class="fu" style="margin: 20px 0 0; font-size: 18px; line-height: 1.7; color: var(--t2); animation-delay: 240ms">Not just features that ship.</p>
+<div class="fu mono" style="margin-top: 32px; display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: var(--t2); animation-delay: 320ms">
+<div>Angular<span class="sep">·</span>.NET Core<span class="sep">·</span>PostgreSQL</div>
+<div>Redis<span class="sep">·</span>RabbitMQ<span class="sep">·</span>Docker</div>
+</div>
+<div class="fu" style="margin-top: 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; animation-delay: 400ms">
+<a class="btn btn-p" href="#building">View JobPing
+<svg class="ic" width="14" height="14" aria-hidden="true"><path d="M2.5 7h9M8 3.5L11.5 7L8 10.5" style="fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round"></path></svg>
+</a>
+<a class="btn btn-g" href="https://github.com/ankit-for-work">GitHub
+<svg class="ic" width="14" height="14" aria-hidden="true"><path d="M4 10L10 4M5 4h5v5" style="fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round"></path></svg>
+</a>
+<a class="btn btn-t" href="#">Resume</a>
+</div>
+<div class="fu stats" style="margin-top: 56px; display: flex; align-items: stretch; gap: 32px; animation-delay: 480ms">
+<div>
+<div style="font-size: 22px; font-weight: 600; letter-spacing: -0.02em">3 years</div>
+<div style="margin-top: 4px; font-size: 13px; line-height: 1.5; color: var(--t2)">production<br>experience</div>
+</div>
+<div class="vd" style="width: 1px; background: var(--b)"></div>
+<div>
+<div style="font-size: 22px; font-weight: 600; letter-spacing: -0.02em">5+ products</div>
+<div style="margin-top: 4px; font-size: 13px; line-height: 1.5; color: var(--t2)">shipped</div>
+</div>
+<div class="vd" style="width: 1px; background: var(--b)"></div>
+<div>
+<div style="font-size: 22px; font-weight: 600; letter-spacing: -0.02em">Full cycle</div>
+<div style="margin-top: 4px; font-size: 13px; line-height: 1.5; color: var(--t2)">design → deploy</div>
+</div>
+</div>
+</div>
+
+<!-- live architecture diagram -->
+<div class="diagram" role="img" aria-label="JobPing architecture: job sources feed the API, which publishes to RabbitMQ; the match worker consumes messages and sends email alerts." style="position: relative; width: 520px; height: 520px; justify-self: end">
+<svg width="520" height="520" aria-hidden="true" style="position: absolute; left: 0; top: 0; overflow: visible">
+<path class="wire" d="M140 30 L140 232 Q140 252 160 252 L390 252 L390 386 Q390 406 370 406 L140 406 L140 490" style="fill: none; stroke: var(--bh); stroke-width: 1.5"></path>
+<path class="wire-flow" d="M140 30 L140 232 Q140 252 160 252 L390 252 L390 386 Q390 406 370 406 L140 406 L140 490" style="fill: none; stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 2 10; opacity: .45"></path>
+</svg>
+<span class="pkt" style="animation-delay: 2000ms"></span>
+<span class="pkt" style="animation-delay: 3500ms"></span>
+<span class="pkt" style="animation-delay: 5000ms"></span>
+
+<div class="mono" style="position: absolute; left: 40px; top: 0; width: 200px; height: 30px; box-sizing: border-box; border: 1px dashed var(--bh); border-radius: 999px; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--t2); animation: fadeIn .6s ease .6s both">3 job sources · every 2h</div>
+
+<div class="mono" style="position: absolute; left: 154px; top: 170px; font-size: 11px; color: var(--code); animation: fadeIn .6s ease 1.6s both">publish()</div>
+<div class="mono" style="position: absolute; left: 402px; top: 322px; font-size: 11px; color: var(--code); animation: fadeIn .6s ease 1.8s both">consume()</div>
+
+<div class="node" style="left: 40px; top: 60px; animation: nodeIn .6s var(--ease) .6s both, nodePulse 4.5s ease-in-out 2.4s infinite">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<span class="mono" style="font-size: 10px; letter-spacing: .08em; color: var(--t2)">01 · API</span>
+<span class="dot"></span>
+</div>
+<div style="margin-top: 6px; font-size: 15px; font-weight: 600; letter-spacing: -0.01em; color: var(--code)">JobPing.Api</div>
+<div class="mono" style="margin-top: 2px; font-size: 11px; color: var(--t2)">ASP.NET Core 8</div>
+</div>
+
+<div class="node" style="left: 290px; top: 214px; animation: nodeIn .6s var(--ease) .75s both, nodePulse 4.5s ease-in-out 3.9s infinite">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<span class="mono" style="font-size: 10px; letter-spacing: .08em; color: var(--t2)">02 · BROKER</span>
+<div aria-hidden="true" style="display: flex; align-items: flex-end; gap: 2px; height: 12px">
+<span class="bar" style="height: 12px; animation-delay: 0ms"></span>
+<span class="bar" style="height: 12px; animation-delay: 200ms"></span>
+<span class="bar" style="height: 12px; animation-delay: 400ms"></span>
+<span class="bar" style="height: 12px; animation-delay: 600ms"></span>
+</div>
+</div>
+<div style="margin-top: 6px; font-size: 15px; font-weight: 600; letter-spacing: -0.01em">RabbitMQ</div>
+<div class="mono" style="margin-top: 2px; font-size: 11px; color: var(--t2)">wakes on message</div>
+</div>
+
+<div class="node" style="left: 40px; top: 368px; animation: nodeIn .6s var(--ease) .9s both, nodePulse 4.5s ease-in-out 5.4s infinite">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<span class="mono" style="font-size: 10px; letter-spacing: .08em; color: var(--t2)">03 · WORKER</span>
+<span class="spin" style="width: 12px; height: 12px"></span>
+</div>
+<div style="margin-top: 6px; font-size: 15px; font-weight: 600; letter-spacing: -0.01em">Match Worker</div>
+<div class="mono" style="margin-top: 2px; font-size: 11px; color: var(--t2)">score · dedupe · alert</div>
+</div>
+
+<div class="mono" style="position: absolute; left: 40px; top: 490px; width: 200px; height: 30px; box-sizing: border-box; border: 1px solid var(--b); border-radius: 999px; background: var(--surface); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 11px; color: var(--t1); animation: fadeIn .6s ease 1.9s both"><span class="dot" style="width: 6px; height: 6px"></span>email alerts → users</div>
+</div>
+
+</div>
+</section>
+
+<!-- ============ CURRENTLY BUILDING ============ -->
+<section id="building" style="position: relative; padding: 96px 0; scroll-margin-top: 40px">
+<div aria-hidden="true" style="position: absolute; left: 50%; top: 40px; width: 900px; height: 420px; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(closest-side, var(--glow-c), transparent); pointer-events: none"></div>
+<div class="wrap" style="position: relative">
+<p class="eyebrow rv" style="margin-bottom: 20px">Currently building</p>
+
+<div class="build rv" style="display: grid; grid-template-columns: minmax(0, 1fr) 400px; gap: 48px; align-items: stretch; padding: 40px; box-sizing: border-box; background: var(--surface); border: 1px solid var(--b); border-left: 2px solid var(--accent); border-radius: 16px">
+
+<div style="display: flex; flex-direction: column">
+<a href="#work" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; font-size: 44px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1">JobPing
+<svg width="22" height="22" aria-hidden="true"><path d="M5 17L17 5M7 5h10v10" style="fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"></path></svg>
+</a>
+<div style="margin: 24px 0; height: 1px; background: var(--b)"></div>
+<p style="margin: 0; max-width: 580px; font-size: 16px; line-height: 1.75; color: var(--t2)">A developer job alert platform. Workers fetch jobs from 3 sources every 2 hours, calculate match scores against your skill profile, and send email alerts via a RabbitMQ pipeline — entirely without you opening a website.</p>
+<div style="margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px">
+<a class="btn btn-p" href="#">Live demo
+<svg class="ic" width="14" height="14" aria-hidden="true"><path d="M2.5 7h9M8 3.5L11.5 7L8 10.5" style="fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round"></path></svg>
+</a>
+<a class="btn btn-g" href="#think">Read the architecture
+<svg class="ic" width="14" height="14" aria-hidden="true"><path d="M2.5 7h9M8 3.5L11.5 7L8 10.5" style="fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round"></path></svg>
+</a>
+</div>
+<div style="margin-top: auto; padding-top: 32px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; color: var(--t2)">
+<div style="display: flex; align-items: center; gap: 10px">
+<span style="width: 7px; height: 7px; border-radius: 50%; background: #f59e0b"></span>
+<span>Status: In development<span class="sep">·</span>Expected: October 2026</span>
+</div>
+<div class="mono" style="display: flex; align-items: center; gap: 10px; font-size: 12px">
+<span class="dot pulse"></span>
+<span><span style="color: var(--t1)">Worker active</span><span class="sep">·</span>Last run: <span id="lastRun">42 min ago</span><span class="sep">·</span>Next: <span id="nextRun">1h 18m 00s</span></span>
+</div>
+</div>
+</div>
+
+<!-- terminal widget -->
+<div style="display: flex; flex-direction: column; border-radius: 12px; border: 1px solid var(--b); background: var(--bg); overflow: hidden">
+<div style="height: 40px; padding: 0 14px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--b); background: var(--surface)">
+<div style="display: flex; align-items: center; gap: 10px">
+<span class="spin"></span>
+<span class="mono" style="font-size: 12px; color: var(--t2)">jobping-worker</span>
+</div>
+<span class="mono" style="display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--ok)"><span class="dot" style="width: 6px; height: 6px"></span>running</span>
+</div>
+<div style="position: relative; flex-grow: 1; padding: 18px 16px 12px; display: flex; flex-direction: column; justify-content: flex-end">
+<div style="position: relative; height: 130px; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 40%); mask-image: linear-gradient(to bottom, transparent 0, #000 40%)">
+<div class="log-track">
+<div class="ll"><span class="ts">[10:42]</span>Fetching from Remotive...</div>
+<div class="ll"><span class="ts">[10:42]</span>14 new jobs found</div>
+<div class="ll"><span class="ts">[10:42]</span>Calculating match scores...</div>
+<div class="ll"><span class="ts">[10:42]</span>3 users alerted</div>
+<div class="ll"><span class="ts">[10:44]</span>Worker complete <span style="color: var(--ok)">✓</span></div>
+<div class="ll"><span class="ts">[10:42]</span>Fetching from Remotive...</div>
+<div class="ll"><span class="ts">[10:42]</span>14 new jobs found</div>
+<div class="ll"><span class="ts">[10:42]</span>Calculating match scores...</div>
+<div class="ll"><span class="ts">[10:42]</span>3 users alerted</div>
+<div class="ll"><span class="ts">[10:44]</span>Worker complete <span style="color: var(--ok)">✓</span></div>
+</div>
+</div>
+<div class="ll" style="margin-top: 6px; color: var(--t2)">waiting for next run<span class="caret"></span></div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="work" style="padding: 96px 0; border-top: 1px solid var(--b1); scroll-margin-top: 40px">
+<div class="wrap">
+<div class="rv" style="margin-bottom: 40px">
+<p class="eyebrow">Selected work</p>
+<h2 class="h2">Things I've shipped</h2>
+</div>
+
+<article class="card feat rv" style="display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 48px; padding: 36px; box-sizing: border-box">
+<div style="display: flex; flex-direction: column">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<span class="mono" style="font-size: 12px; letter-spacing: .06em; color: var(--t2)">01 — FEATURED</span>
+</div>
+<h3 style="margin: 20px 0 0; font-size: 40px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1">JobPing <span class="arr" style="color: var(--accent); font-weight: 500">→</span></h3>
+<p style="margin: 8px 0 0; font-size: 16px; color: var(--t2)">Developer job alert platform</p>
+<div style="margin-top: 24px; display: flex; flex-wrap: wrap; gap: 8px">
+<span class="tag">.NET Core 8</span><span class="tag">Angular 18</span><span class="tag">PostgreSQL</span><span class="tag">RabbitMQ</span><span class="tag">Redis</span><span class="tag">Docker</span>
+</div>
+<div style="margin-top: 28px; padding: 20px 22px; border-radius: 10px; background: var(--elev); border: 1px solid var(--b); border-left: 2px solid var(--accent)">
+<p class="eyebrow" style="color: var(--t1)">The interesting problem</p>
+<p style="margin: 10px 0 0; font-size: 17px; font-weight: 500; line-height: 1.5; color: var(--t1)">How do you prevent the same user from receiving duplicate alerts for the same job?</p>
+<p style="margin: 10px 0 0; font-size: 15px; line-height: 1.75; color: var(--t2)">An <code class="code">alert_history</code> table with <code class="code"><span class="kw">unique</span><span class="pn">(</span>user_id, job_id<span class="pn">)</span></code>, checked before every RabbitMQ message publish.</p>
+</div>
+<div style="margin-top: 28px; display: flex; flex-wrap: wrap; gap: 24px">
+<a class="lnk lnk-a" href="#">Live Demo <span class="arr">→</span></a>
+<a class="lnk" href="#">Case Study</a>
+<a class="lnk" href="https://github.com/ankit-for-work">GitHub ↗</a>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; justify-content: flex-end">
+<span style="display: inline-flex; align-items: center; gap: 8px; height: 28px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--b); background: var(--surface); font-size: 12px; color: var(--t1)">Live <span class="dot pulse" style="width: 6px; height: 6px"></span></span>
+</div>
+<div class="pipe" style="flex-grow: 1; padding: 22px; border-radius: 12px; background: var(--bg); border: 1px solid var(--b); display: flex; flex-direction: column">
+<p class="eyebrow" style="font-size: 11px">Alert pipeline</p>
+<div style="margin-top: 18px; display: flex; flex-direction: column; gap: 0; position: relative">
+<div aria-hidden="true" style="position: absolute; left: 5px; top: 8px; bottom: 8px; width: 1px; background: linear-gradient(var(--t2), var(--b))"></div>
+<div class="mono" style="position: relative; display: flex; align-items: center; gap: 14px; height: 36px; font-size: 12.5px; color: var(--t1)"><span style="width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid var(--accent); background: var(--bg); box-sizing: border-box"></span>fetch · 3 sources</div>
+<div class="mono" style="position: relative; display: flex; align-items: center; gap: 14px; height: 36px; font-size: 12.5px; color: var(--t1)"><span style="width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid var(--accent); background: var(--bg); box-sizing: border-box"></span>score vs skill profile</div>
+<div class="mono" style="position: relative; display: flex; align-items: center; gap: 14px; height: 36px; font-size: 12.5px; color: var(--t1)"><span style="width: 11px; height: 11px; border-radius: 50%; background: var(--accent)"></span>check alert_history</div>
+<div class="mono" style="position: relative; display: flex; align-items: center; gap: 14px; height: 36px; font-size: 12.5px; color: var(--t1)"><span style="width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid var(--accent); background: var(--bg); box-sizing: border-box"></span>publish → RabbitMQ</div>
+<div class="mono" style="position: relative; display: flex; align-items: center; gap: 14px; height: 36px; font-size: 12.5px; color: var(--t1)"><span style="width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid var(--ok); background: var(--bg); box-sizing: border-box"></span>email alert sent</div>
+</div>
+</div>
+</div>
+</article>
+
+<div class="g2" style="margin-top: 16px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+<article class="card rv" style="padding: 32px; box-sizing: border-box; display: flex; flex-direction: column">
+<span class="mono" style="font-size: 12px; color: var(--t2)">02</span>
+<h3 style="margin: 20px 0 0; font-size: 24px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.25">Inventory Management System</h3>
+<p style="margin: 12px 0 0; font-size: 15px; line-height: 1.7; color: var(--t2)">Full-featured platform for SMBs. Used in production.</p>
+<div style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px"><span class="tag">Angular</span><span class="tag">.NET</span><span class="tag">SQL</span></div>
+<a class="lnk" href="#" style="margin-top: 28px">Details <span class="arr">→</span></a>
+</article>
+<article class="card rv" style="padding: 32px; box-sizing: border-box; display: flex; flex-direction: column">
+<span class="mono" style="font-size: 12px; color: var(--t2)">03</span>
+<h3 style="margin: 20px 0 0; font-size: 24px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.25">HR Leave Management Portal</h3>
+<p style="margin: 12px 0 0; font-size: 15px; line-height: 1.7; color: var(--t2)">Multi-level approval workflows. Email notifications. HR analytics dashboard.</p>
+<div style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px"><span class="tag">Angular</span><span class="tag">.NET</span><span class="tag">SQL</span></div>
+<a class="lnk" href="#" style="margin-top: 28px">Details <span class="arr">→</span></a>
+</article>
+</div>
+</div>
+</section>
+
+<!-- ============ HOW I THINK ============ -->
+<section id="think" style="padding: 96px 0; border-top: 1px solid var(--b1); scroll-margin-top: 40px">
+<div class="wrap">
+<div class="rv" style="margin-bottom: 40px; display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap">
+<div>
+<p class="eyebrow">How I think</p>
+<h2 class="h2">Three decisions from JobPing.</h2>
+</div>
+<p style="margin: 0; max-width: 360px; font-size: 15px; line-height: 1.7; color: var(--t2)">Every piece of infrastructure has to earn its place. Here's why these did.</p>
+</div>
+
+<div class="g3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
+
+<article class="think rvs" style="padding: 28px; box-sizing: border-box; display: flex; flex-direction: column">
+<h3 style="margin: 0; font-size: 20px; font-weight: 600; letter-spacing: -0.02em">Why <span class="mono" style="font-weight: 500; color: var(--t1)">RabbitMQ</span>?</h3>
+<p class="eyebrow" style="margin-top: 24px; font-size: 11px">The problem</p>
+<p style="margin: 8px 0 0; font-size: 15px; line-height: 1.7; color: var(--t2)">Database polling wakes up every N minutes whether or not there's new data.</p>
+<div style="margin: 20px 0; border-top: 1px dashed var(--b)"></div>
+<p class="eyebrow" style="font-size: 11px; color: var(--t1)">The decision</p>
+<p style="margin: 8px 0 0; font-size: 15px; line-height: 1.7; color: var(--t1)">RabbitMQ wakes the worker only when a message arrives.</p>
+<div class="mono" style="margin-top: auto; padding-top: 24px; display: flex; flex-direction: column; gap: 6px; font-size: 12px">
+<div style="color: var(--t2)"><span style="color: var(--t3)">−</span> while(true) { poll(); sleep(N); }</div>
+<div style="color: var(--code)"><span style="color: var(--ok)">+</span> on message → process</div>
+</div>
+</article>
+
+<article class="think rvs" style="padding: 28px; box-sizing: border-box; display: flex; flex-direction: column">
+<h3 style="margin: 0; font-size: 20px; font-weight: 600; letter-spacing: -0.02em">Why <span class="mono" style="font-weight: 500; color: var(--t1)">Redis</span> for 4 things?</h3>
+<p class="eyebrow" style="margin-top: 24px; font-size: 11px">The problem</p>
+<p style="margin: 8px 0 0; font-size: 15px; line-height: 1.7; color: var(--t2)">Caching, a distributed lock, rate limiting and a JWT blacklist — four separate needs.</p>
+<div style="margin: 20px 0; border-top: 1px dashed var(--b)"></div>
+<p class="eyebrow" style="font-size: 11px; color: var(--t1)">The decision</p>
+<p style="margin: 8px 0 0; font-size: 15px; line-height: 1.7; color: var(--t1)">One infrastructure component, four real problems.</p>
+<div style="margin-top: auto; padding-top: 24px; display: flex; flex-wrap: wrap; gap: 6px">
+<span class="chip">cache</span><span class="chip">lock</span><span class="chip">rate limiter</span><span class="chip">jwt blacklist</span>
+</div>
+</article>
+
+<article class="think rvs" style="padding: 28px; box-sizing: border-box; display: flex; flex-direction: column">
+<h3 style="margin: 0; font-size: 20px; font-weight: 600; letter-spacing: -0.02em">Why <span class="mono" style="font-weight: 500; color: var(--t1)">delta updates</span> for preferences?</h3>
+<p class="eyebrow" style="margin-top: 24px; font-size: 11px">The problem</p>
+<p style="margin: 8px 0 0; font-size: 15px; line-height: 1.7; color: var(--t2)">Delete-all and re-insert breaks audit trails and creates race conditions.</p>
+<div style="margin: 20px 0; border-top: 1px dashed var(--b)"></div>
+<p class="eyebrow" style="font-size: 11px; color: var(--t1)">The decision</p>
+<p style="margin: 8px 0 0; font-size: 15px; line-height: 1.7; color: var(--t1)">Track the delta. Apply the diff.</p>
+<div class="mono" style="margin-top: auto; padding-top: 24px; display: flex; flex-direction: column; gap: 6px; font-size: 12px">
+<div style="color: var(--code)"><span style="color: var(--ok)">+</span> added: [RabbitMQ]</div>
+<div style="color: var(--t1)"><span style="color: var(--t3)">−</span> removed: [jQuery]</div>
+<div style="color: var(--t2)"><span style="color: var(--t3)">=</span> unchanged: untouched</div>
+</div>
+</article>
+
+</div>
+</div>
+</section>
+
+<!-- ============ STACK ============ -->
+<section id="stack" style="padding: 96px 0; border-top: 1px solid var(--b1); scroll-margin-top: 40px">
+<div class="wrap">
+<div class="rv" style="margin-bottom: 40px">
+<p class="eyebrow">Stack</p>
+<h2 class="h2">What I work with</h2>
+</div>
+
+<div style="border-bottom: 1px solid var(--b)">
+<div class="srow rvl" style="display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 24px; align-items: baseline; padding: 24px 0; border-top: 1px solid var(--b)">
+<span style="font-size: 14px; color: var(--t2)">Daily</span>
+<span style="font-size: 20px; font-weight: 500; letter-spacing: -0.01em; color: var(--t1)">Angular<span class="sep">·</span>.NET Core<span class="sep">·</span>PostgreSQL<span class="sep">·</span>TypeScript</span>
+</div>
+<div class="srow rvl" style="display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 24px; align-items: baseline; padding: 24px 0; border-top: 1px solid var(--b)">
+<span style="font-size: 14px; color: var(--t2)">Growing in</span>
+<span style="font-size: 20px; font-weight: 500; letter-spacing: -0.01em; color: var(--t1)">Redis<span class="sep">·</span>RabbitMQ<span class="sep">·</span>Docker<span class="sep">·</span>CI/CD</span>
+</div>
+<div class="srow rvl" style="display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 24px; align-items: baseline; padding: 24px 0; border-top: 1px solid var(--b)">
+<span style="font-size: 14px; color: var(--t2)">Familiar with</span>
+<span style="font-size: 20px; font-weight: 500; letter-spacing: -0.01em; color: var(--t2)">SQL Server<span class="sep">·</span>Azure DevOps<span class="sep">·</span>Linux<span class="sep">·</span>Nginx</span>
+</div>
+<div class="srow rvl" style="display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 24px; align-items: baseline; padding: 24px 0; border-top: 1px solid var(--b)">
+<span style="font-size: 14px; color: var(--t2)">Using now</span>
+<span style="font-size: 20px; font-weight: 500; letter-spacing: -0.01em; color: var(--t2)">AI-assisted development<span class="sep">·</span>Claude<span class="sep">·</span>Copilot</span>
+</div>
+</div>
+
+<figure class="rv" style="margin: 48px 0 0; padding: 32px 36px; border-radius: 14px; background: var(--elev); border: 1px solid var(--b); border-left: 2px solid var(--accent)">
+<p class="eyebrow" style="color: var(--t1)">On working with AI tools</p>
+<blockquote style="margin: 16px 0 0; max-width: 860px; font-size: 19px; line-height: 1.75; font-style: italic; font-weight: 500; color: var(--t1)">“I use Claude and Copilot to move faster — reviewing architectural decisions, explaining concepts, generating boilerplate. Every production decision and line of business logic is written and understood by me. The matching algorithm, the RabbitMQ topology, the Redis lock strategy — those are mine.”</blockquote>
+</figure>
+</div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" style="position: relative; padding: 120px 0 96px; border-top: 1px solid var(--b1); overflow: hidden; scroll-margin-top: 40px">
+<div aria-hidden="true" style="position: absolute; left: -200px; bottom: -300px; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(closest-side, var(--glow-c), transparent); pointer-events: none"></div>
+<div class="wrap" style="position: relative">
+<h2 class="rv h1" style="margin: 0; font-size: 64px; font-weight: 600; letter-spacing: -0.035em; line-height: 1.05">Get in touch.</h2>
+
+<div class="rv" style="margin-top: 56px; border-top: 1px solid var(--b)">
+<a class="crow" href="mailto:ankitjguptaforwork@gmail.com">
+<span style="font-size: 14px; color: var(--t2)">Email</span>
+<span class="arr">→</span>
+<span style="font-size: 18px; font-weight: 500; overflow-wrap: anywhere">ankitjguptaforwork@gmail.com</span>
+<span aria-hidden="true" style="font-size: 14px">↗</span>
+</a>
+<a class="crow" href="https://github.com/ankit-for-work">
+<span style="font-size: 14px; color: var(--t2)">GitHub</span>
+<span class="arr">→</span>
+<span style="font-size: 18px; font-weight: 500">github.com/ankit-for-work</span>
+<span aria-hidden="true" style="font-size: 14px">↗</span>
+</a>
+<a class="crow" href="https://linkedin.com/in/ankit-gupta">
+<span style="font-size: 14px; color: var(--t2)">LinkedIn</span>
+<span class="arr">→</span>
+<span style="font-size: 18px; font-weight: 500">linkedin.com/in/ankit-gupta</span>
+<span aria-hidden="true" style="font-size: 14px">↗</span>
+</a>
+</div>
+</div>
+</section>
+
+<footer style="border-top: 1px solid var(--b1)">
+<div class="wrap" style="height: 80px; display: flex; align-items: center; justify-content: flex-end; gap: 16px; font-size: 13px; color: var(--t2)">
+<a class="nl" href="#top" style="font-size: 13px">Back to top ↑</a>
+</div>
+<div class="wrap" style="padding-bottom: 32px; text-align: center; font-size: 13px; color: var(--t3)">Ankit Gupta<span class="sep">·</span>2026<span class="sep">·</span>Vapi, Gujarat</div>
+</footer>
+
+<div class="cur" id="cursor" aria-hidden="true"><span class="cur-dot"></span></div>
+
+</div>
+<script>
+(function(){
+  var app=document.getElementById('app');
+  // theme: saved choice, else system preference
+  var saved=null; try{saved=localStorage.getItem('theme')}catch(e){}
+  var light=saved==='light'; // dark is the default
+  var btn=document.getElementById('themeToggle'), t;
+  function apply(){app.classList.toggle('light',light);var l=light?'Switch to dark theme':'Switch to light theme';btn.setAttribute('aria-label',l);btn.title=l}
+  apply();
+  btn.addEventListener('click',function(){light=!light;app.classList.add('theming');apply();try{localStorage.setItem('theme',light?'light':'dark')}catch(e){}clearTimeout(t);t=setTimeout(function(){app.classList.remove('theming')},260)});
+  // worker countdown (2h cycle, starts 42 min after last run)
+  var t0=Date.now(),lr=document.getElementById('lastRun'),nr=document.getElementById('nextRun');
+  function tick(){var e=(2520+Math.floor((Date.now()-t0)/1000))%7200,left=7200-e,h=Math.floor(left/3600),m=Math.floor(left%3600/60),s=left%60,mins=Math.floor(e/60);lr.textContent=mins<1?'just now':mins+' min ago';nr.textContent=(h?h+'h ':'')+m+'m '+String(s).padStart(2,'0')+'s'}
+  tick();setInterval(tick,1000);
+  // custom cursor
+  var cur=document.getElementById('cursor');
+  app.addEventListener('mousemove',function(ev){cur.style.transform='translate3d('+ev.clientX+'px,'+ev.clientY+'px,0)';cur.style.opacity='1'});
+  app.addEventListener('mouseover',function(ev){var x=ev.target.closest&&ev.target.closest('a,button,[tabindex]');cur.setAttribute('data-hover',x?'1':'0')});
+  app.addEventListener('mouseleave',function(){cur.style.opacity='0'});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+@import "./styles/tokens.css";
+@import "./styles/animations.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html{scroll-behavior:smooth}
+body{margin:0;background:#0a0a0a;color:#ffffff;font-family:'Plus Jakarta Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+a:hover{color:inherit}
+
+.wrap{max-width:1200px;margin:0 auto;padding:0 48px;box-sizing:border-box}
+.mono{font-family:var(--mono)}
+.eyebrow{margin:0;font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--t2)}
+.h2{margin:14px 0 0;font-size:44px;line-height:1.08;font-weight:600;letter-spacing:-.03em;color:var(--t1)}
+.sep{color:var(--t3);padding:0 10px}
+
+/* buttons (shared across hero, currently-building, projects) */
+.btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:10px;font-size:14px;font-weight:500;transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .4s var(--ease),background .4s var(--ease),opacity .4s var(--ease)}
+.btn:hover{transform:translateY(-2px)}
+.btn-p{background:var(--accent);color:var(--on-accent)}
+.btn-p:hover{color:var(--on-accent);box-shadow:0 10px 30px -10px var(--bh),0 0 0 4px var(--hov)}
+.btn-g{border:1px solid var(--b);color:var(--t1);background:transparent}
+.btn-g:hover{color:var(--t1);border-color:var(--bh);background:var(--hov)}
+.btn-t{color:var(--t2);padding:0 8px}
+.btn-t:hover{color:var(--t1)}
+.btn .ic{transition:transform .4s var(--ease)}
+.btn:hover .ic{transform:translateX(3px)}
+
+.fu{animation:fadeUp .7s var(--ease) both}
+
+.ic-moon,.ic-sun{display:inline-flex}.ic-moon{display:none}.pf.light .ic-moon{display:inline-flex}.pf.light .ic-sun{display:none}
+
+@media (hover:hover) and (pointer:fine){.pf.cc,.pf.cc a,.pf.cc button{cursor:none}}
+
+@media (max-width: 720px){
+  .wrap{padding:0 20px}
+  .h1{font-size:48px !important}
+  .h2{font-size:32px}
+}
