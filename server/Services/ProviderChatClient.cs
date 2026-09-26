@@ -48,6 +48,10 @@ public class ProviderChatClient : IProviderChatClient
             max_tokens = _options.MaxTokens,
             temperature = _options.Temperature,
             stream_options = new { include_usage = true },
+            // Some reasoning-capable models (e.g. Nemotron, DeepSeek-R1 family) otherwise stream
+            // their internal chain-of-thought as regular content. This is an OpenRouter extension;
+            // OpenAI-compatible providers that don't recognize it simply ignore the extra field.
+            reasoning = new { exclude = true },
         };
 
         using var request = new HttpRequestMessage(HttpMethod.Post, $"{_options.BaseUrl.TrimEnd('/')}/chat/completions")
