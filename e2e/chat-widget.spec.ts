@@ -78,10 +78,8 @@ test('chat widget: network error surfaces friendly fallback message', async ({ p
 
   // No API is running in this test env, so the fetch should fail and the
   // service should append its friendly fallback message.
-  await page.waitForSelector('.msg-assistant', { timeout: 10000 });
-  await page.waitForTimeout(500);
-  const assistantText = await page.locator('.msg-assistant').first().innerText();
-  expect(assistantText.toLowerCase()).toContain('ankitjguptaforwork@gmail.com');
+  const assistantMsg = page.locator('.msg-assistant').first();
+  await expect(assistantMsg).toContainText('ankitjguptaforwork@gmail.com', { timeout: 10000 });
 
   await page.screenshot({ path: path.join(SCREENSHOT_DIR, 'network-error-fallback.png') });
 });
@@ -135,6 +133,28 @@ test('chat widget mid-stream and final answer (mocked provider, no live API need
   await expect(page.locator('.msg-assistant a')).toHaveCount(0); // no links in this answer, sanity check renderer ran
   await expect(page.locator('.msg-assistant li')).toHaveCount(3);
   await page.screenshot({ path: path.join(SCREENSHOT_DIR, 'with-answer_desktop_dark.png') });
+});
+
+test('chat widget shows friendly message on 429 rate limit', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.route('**/api/chat', (route) =>
+    route.fulfill({
+      status: 429,
+      contentType: 'application/json',
+      body: JSON.stringify({ error: "You've asked a lot — try again in a bit, or email Ankit." }),
+    }),
+  );
+  await page.goto('/');
+  await page.waitForSelector('.launcher', { state: 'visible', timeout: 10000 });
+  await openWidget(page);
+
+  await page.fill('.chat-input', 'How do I contact him?');
+  await page.keyboard.press('Enter');
+
+  await page.waitForSelector('.msg-assistant', { timeout: 10000 });
+  const text = await page.locator('.msg-assistant').first().innerText();
+  expect(text.toLowerCase()).toContain("you've asked a lot");
+  await page.screenshot({ path: path.join(SCREENSHOT_DIR, 'rate-limit-429.png') });
 });
 
 test('chat widget respects prefers-reduced-motion', async ({ page }) => {

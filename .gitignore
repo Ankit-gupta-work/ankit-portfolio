@@ -54,3 +54,4 @@ server/obj/
 server.Tests/bin/
 server.Tests/obj/
 server/.env
+AI_details.txt

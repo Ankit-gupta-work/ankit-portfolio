@@ -8,7 +8,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:ankit-portfolio": "node dist/ankit-portfolio/server/server.mjs",
-    "test:visual": "ng build --configuration development && playwright test"
+    "test:visual": "ng build --configuration development && playwright test",
+    "dev:api": "dotnet run --project server",
+    "dev:all": "concurrently -n web,api -c blue,green \"npm start\" \"npm run dev:api\""
   },
   "private": true,
   "dependencies": {
@@ -36,6 +38,7 @@
     "@types/jasmine": "~5.1.0",
     "@types/node": "^18.18.0",
     "autoprefixer": "^10.6.1",
+    "concurrently": "^10.0.5",
     "http-server": "^14.1.1",
     "jasmine-core": "~5.2.0",
     "karma": "~6.4.0",
