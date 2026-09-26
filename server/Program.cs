@@ -5,16 +5,20 @@ using Server.Options;
 using Server.Services;
 using StackExchange.Redis;
 
-var builder = WebApplication.CreateBuilder(args);
-
-if (builder.Environment.IsDevelopment())
+// .env must be loaded into the process's environment variables *before* WebApplication.CreateBuilder
+// runs — the configuration system snapshots environment variables during builder construction, so
+// setting them afterward (even via builder.Configuration) would be too late for IConfiguration to see.
+var aspnetEnv = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+if (string.Equals(aspnetEnv, "Development", StringComparison.OrdinalIgnoreCase))
 {
-    var envPath = Path.Combine(builder.Environment.ContentRootPath, ".env");
+    var envPath = Path.Combine(Directory.GetCurrentDirectory(), ".env");
     if (File.Exists(envPath))
     {
         DotNetEnv.Env.Load(envPath);
     }
 }
+
+var builder = WebApplication.CreateBuilder(args);
 
 var aiOptions = AiOptions.FromEnvironment(builder.Configuration);
 var missingVar = aiOptions.FindMissingRequiredVariable();

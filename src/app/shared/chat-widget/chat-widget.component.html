@@ -1,0 +1,90 @@
+<button
+  #launcherBtn
+  type="button"
+  class="launcher"
+  [class.open]="isOpen()"
+  (click)="toggle()"
+  aria-label="Ask about Ankit"
+  title="Ask about Ankit"
+  [attr.aria-expanded]="isOpen()"
+>
+  <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true">
+    <path
+      d="M3 5.5C3 4.12 4.12 3 5.5 3h11C17.88 3 19 4.12 19 5.5v7c0 1.38-1.12 2.5-2.5 2.5H9l-4 3.5v-3.5H5.5C4.12 15 3 13.88 3 12.5v-7z"
+      style="fill: none; stroke: var(--t1); stroke-width: 1.5; stroke-linejoin: round"
+    ></path>
+  </svg>
+  <span class="online-dot" aria-hidden="true"></span>
+</button>
+
+@if (isOpen()) {
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="chatWidgetTitle">
+    <header class="panel-header">
+      <div>
+        <p id="chatWidgetTitle" class="panel-title">Ask about Ankit</p>
+        <p class="mono panel-subtitle">AI assistant · answers from his profile</p>
+      </div>
+      <button type="button" class="close-btn" (click)="close()" aria-label="Close chat">
+        <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+          <path
+            d="M2 2l10 10M12 2L2 12"
+            style="fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round"
+          ></path>
+        </svg>
+      </button>
+    </header>
+
+    <div class="message-list" #messageList (scroll)="onMessageListScroll()" aria-live="polite">
+      @if (messages().length === 0) {
+        <div class="empty-state">
+          <p>Hi — ask me anything about Ankit's work.</p>
+          <div class="chips">
+            @for (suggestion of suggestions; track suggestion) {
+              <button type="button" class="tag chip-btn" (click)="sendSuggestion(suggestion)">{{ suggestion }}</button>
+            }
+          </div>
+        </div>
+      }
+
+      @for (message of messages(); track $index) {
+        @if (message.role === 'user') {
+          <div class="msg msg-user">{{ message.content }}</div>
+        } @else {
+          <div class="msg msg-assistant">
+            <span class="chat-md" [innerHTML]="message.html"></span>
+            @if (isStreaming() && $index === messages().length - 1) {
+              <span class="caret"></span>
+            }
+          </div>
+        }
+      }
+    </div>
+
+    <div class="input-row">
+      <textarea
+        #panelInput
+        class="mono chat-input"
+        rows="1"
+        [value]="inputText()"
+        (input)="onInputChange($any($event.target).value)"
+        (keydown)="onInputKeydown($event)"
+        [maxLength]="maxLength"
+        placeholder="Ask something about Ankit…"
+        aria-label="Message"
+      ></textarea>
+      <div class="input-row-footer">
+        @if (inputText().length > counterThreshold) {
+          <span class="char-counter" [class.over]="inputText().length >= maxLength">{{ inputText().length }}/{{ maxLength }}</span>
+        }
+        <div class="spacer"></div>
+        @if (isStreaming()) {
+          <button type="button" class="btn btn-g stop-btn" (click)="stop()">Stop</button>
+        } @else {
+          <button type="button" class="btn btn-p send-btn" [disabled]="!canSend()" (click)="submit()">Send</button>
+        }
+      </div>
+    </div>
+
+    <p class="mono footer-note">AI can make mistakes. For anything important, email Ankit.</p>
+  </div>
+}

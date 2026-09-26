@@ -10,6 +10,7 @@ import { HowIThinkComponent } from './sections/how-i-think/how-i-think.component
 import { StackComponent } from './sections/stack/stack.component';
 import { ContactComponent } from './sections/contact/contact.component';
 import { FooterComponent } from './sections/footer/footer.component';
+import { ChatWidgetComponent } from './shared/chat-widget/chat-widget.component';
 
 @Component({
   selector: 'app-root',
@@ -25,6 +26,7 @@ import { FooterComponent } from './sections/footer/footer.component';
     StackComponent,
     ContactComponent,
     FooterComponent,
+    ChatWidgetComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './app.component.html',

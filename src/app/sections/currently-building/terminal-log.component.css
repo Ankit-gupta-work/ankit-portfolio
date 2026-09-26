@@ -1,4 +1,3 @@
 .log-track{animation:logScroll 15s var(--ease) infinite}
 .ll{height:26px;line-height:26px;white-space:nowrap;font-family:var(--mono);font-size:12.5px;color:var(--t1)}
 .ts{color:var(--t3);margin-right:8px}
-.caret{display:inline-block;width:7px;height:14px;background:var(--t1);vertical-align:-2px;margin-left:4px;animation:blink 1s steps(1) infinite}

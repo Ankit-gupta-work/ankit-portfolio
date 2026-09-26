@@ -3,12 +3,12 @@
     <div class="rv" appReveal style="margin-bottom: 40px; display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap">
       <div>
         <p class="eyebrow">How I think</p>
-        <h2 class="h2">Three decisions from JobPing.</h2>
+        <h2 class="h2">Decisions from JobPing — and this site.</h2>
       </div>
       <p style="margin: 0; max-width: 360px; font-size: 15px; line-height: 1.7; color: var(--t2)">Every piece of infrastructure has to earn its place. Here's why these did.</p>
     </div>
 
-    <div class="g3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
+    <div class="g3" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px">
       @for (card of cards; track card.titleMono) {
         <article class="think rvs" appReveal style="padding: 28px; box-sizing: border-box; display: flex; flex-direction: column">
           <h3 style="margin: 0; font-size: 20px; font-weight: 600; letter-spacing: -0.02em">{{ card.titlePrefix }}<span class="mono" style="font-weight: 500; color: var(--t1)">{{ card.titleMono }}</span>{{ card.titleSuffix }}</h3>

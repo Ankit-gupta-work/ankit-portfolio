@@ -201,6 +201,15 @@ export const THINK_CARDS: ThinkCard[] = [
       { sign: '=', text: 'unchanged: untouched', kind: 'equal' },
     ],
   },
+  {
+    titlePrefix: 'Why a ',
+    titleMono: 'backend proxy',
+    titleSuffix: ' for a chatbot?',
+    problem: 'An API key in the browser can be copied and your quota drained.',
+    decision: 'A .NET proxy keeps the key server-side, rate-limits per visitor with Redis, and streams answers.',
+    kind: 'chips',
+    chips: ['API key server-side', 'Redis rate limiting', 'streamed answers'],
+  },
 ];
 
 export const STACK_ROWS: StackRow[] = [

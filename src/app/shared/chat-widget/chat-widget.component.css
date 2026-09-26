@@ -1,0 +1,252 @@
+:host {
+  position: fixed;
+  inset: auto 24px 24px auto;
+  z-index: 110;
+  pointer-events: none;
+}
+:host > * {
+  pointer-events: auto;
+}
+
+.launcher {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  border: 1px solid var(--b);
+  cursor: pointer;
+  padding: 0;
+  box-shadow: 0 20px 40px -20px var(--shadow);
+  transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.launcher:hover,
+.launcher.open {
+  border-color: var(--bh);
+  transform: translateY(-2px);
+}
+.launcher:focus-visible {
+  outline: 2px solid var(--t1);
+  outline-offset: 2px;
+}
+
+.online-dot {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ok);
+}
+
+.panel {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 16px);
+  width: 380px;
+  height: 560px;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--b);
+  border-radius: 16px;
+  box-shadow: 0 30px 80px -30px var(--shadow);
+  overflow: hidden;
+  animation: chatPanelIn 0.3s var(--ease) both;
+}
+
+@keyframes chatPanelIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 16px 14px;
+  border-bottom: 1px solid var(--b);
+}
+.panel-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--t1);
+}
+.panel-subtitle {
+  margin: 4px 0 0;
+  font-size: 11px;
+  color: var(--t2);
+}
+.close-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--t2);
+  cursor: pointer;
+  transition: color 0.3s var(--ease), background 0.3s var(--ease);
+  flex-shrink: 0;
+}
+.close-btn:hover {
+  color: var(--t1);
+  background: var(--hov);
+}
+.close-btn:focus-visible {
+  outline: 2px solid var(--t1);
+  outline-offset: 2px;
+}
+
+.message-list {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  color: var(--t2);
+  font-size: 14px;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip-btn {
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+.chip-btn:hover {
+  border-color: var(--bh);
+  color: var(--t1);
+}
+
+.msg {
+  font-size: 14px;
+  line-height: 1.65;
+  max-width: 88%;
+}
+.msg-user {
+  align-self: flex-end;
+  background: var(--elev);
+  color: var(--t1);
+  padding: 10px 14px;
+  border-radius: 12px;
+  white-space: pre-wrap;
+}
+.msg-assistant {
+  align-self: flex-start;
+  color: var(--t1);
+}
+
+.input-row {
+  border-top: 1px solid var(--b);
+  padding: 12px 16px;
+}
+.chat-input {
+  width: 100%;
+  box-sizing: border-box;
+  resize: none;
+  border: 1px solid var(--b);
+  background: var(--bg);
+  color: var(--t1);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 22px;
+  max-height: 88px;
+  overflow-y: auto;
+  transition: border-color 0.3s var(--ease);
+}
+.chat-input:focus {
+  outline: none;
+  border-color: var(--bh);
+}
+.chat-input::placeholder {
+  color: var(--t3);
+}
+
+.input-row-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+.spacer {
+  flex-grow: 1;
+}
+.char-counter {
+  font-size: 11px;
+  color: var(--t3);
+  font-family: var(--mono);
+}
+.char-counter.over {
+  color: #f59e0b;
+}
+.send-btn,
+.stop-btn {
+  height: 34px;
+  padding: 0 16px;
+  font-size: 13px;
+}
+.send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.footer-note {
+  margin: 0;
+  padding: 10px 16px 14px;
+  font-size: 10px;
+  color: var(--t3);
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  :host {
+    inset: auto 16px 16px auto;
+  }
+  .panel {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 84px;
+    width: auto;
+    height: 80vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    animation: none;
+  }
+  .launcher,
+  .close-btn,
+  .chip-btn,
+  .chat-input {
+    transition: none;
+  }
+}
