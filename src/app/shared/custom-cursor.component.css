@@ -1,4 +1,4 @@
-.cur{position:fixed;left:-14px;top:-14px;width:28px;height:28px;border-radius:50%;border:1px solid var(--bh);box-sizing:border-box;pointer-events:none;z-index:100;opacity:0;display:flex;align-items:center;justify-content:center;transition:transform .12s linear,width .35s var(--ease),height .35s var(--ease),left .35s var(--ease),top .35s var(--ease),background .35s var(--ease),opacity .3s}
+.cur{position:fixed;left:-14px;top:-14px;width:28px;height:28px;border-radius:50%;border:1px solid var(--bh);box-sizing:border-box;pointer-events:none;z-index:200;opacity:0;display:flex;align-items:center;justify-content:center;transition:transform .12s linear,width .35s var(--ease),height .35s var(--ease),left .35s var(--ease),top .35s var(--ease),background .35s var(--ease),opacity .3s}
 .cur-dot{width:4px;height:4px;border-radius:50%;background:var(--t1);transition:opacity .25s}
 .cur[data-hover="1"]{width:44px;height:44px;left:-22px;top:-22px;background:var(--hov)}
 .cur[data-hover="1"] .cur-dot{opacity:0}
