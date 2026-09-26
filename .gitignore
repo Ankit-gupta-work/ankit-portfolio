@@ -54,4 +54,6 @@ server/obj/
 server.Tests/bin/
 server.Tests/obj/
 server/.env
+.vs/
+*.csproj.user
 AI_details.txt

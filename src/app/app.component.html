@@ -1,15 +1,18 @@
 <div class="pf cc" id="app" #appRoot style="width: 100%; background: var(--bg); color: var(--t1); position: relative; overflow-x: clip">
-  <app-scroll-progress></app-scroll-progress>
-  <app-nav></app-nav>
-  <app-hero></app-hero>
-  <app-currently-building></app-currently-building>
-  <app-projects></app-projects>
-  <app-how-i-think></app-how-i-think>
-  <app-stack></app-stack>
-  <app-contact></app-contact>
-  <app-footer></app-footer>
-  <app-custom-cursor></app-custom-cursor>
-  @defer (on idle) {
-    <app-chat-widget></app-chat-widget>
-  }
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="page-content">
+    <app-scroll-progress></app-scroll-progress>
+    <app-nav></app-nav>
+    <app-hero></app-hero>
+    <app-currently-building></app-currently-building>
+    <app-projects></app-projects>
+    <app-how-i-think></app-how-i-think>
+    <app-stack></app-stack>
+    <app-contact></app-contact>
+    <app-footer></app-footer>
+    <app-custom-cursor></app-custom-cursor>
+    @defer (on idle) {
+      <app-chat-widget></app-chat-widget>
+    }
+  </div>
 </div>

@@ -55,6 +55,28 @@ a:hover{color:inherit}
 
 .ic-moon,.ic-sun{display:inline-flex}.ic-moon{display:none}.pf.light .ic-moon{display:inline-flex}.pf.light .ic-sun{display:none}
 
+/* full-page background grid: fixed (does not scroll), sits behind all content, never catches
+   clicks. .page-content stacks above it via a new stacking context (position:relative + z-index). */
+.bg-grid{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(to right,  rgba(255,255,255,.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,.045) 1px, transparent 1px);
+  background-size:64px 64px;
+  background-position:center top;
+  -webkit-mask-image:radial-gradient(ellipse 75% 65% at 50% 35%, #000 25%, transparent 80%);
+  mask-image:radial-gradient(ellipse 75% 65% at 50% 35%, #000 25%, transparent 80%);
+}
+.pf.light .bg-grid{
+  background-image:
+    linear-gradient(to right,  rgba(0,0,0,.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,.05) 1px, transparent 1px);
+}
+.page-content{position:relative;z-index:1}
+
 @media (hover:hover) and (pointer:fine){.pf.cc,.pf.cc a,.pf.cc button{cursor:none}}
 
 @media (max-width: 720px){
