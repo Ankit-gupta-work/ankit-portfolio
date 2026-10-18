@@ -233,9 +233,13 @@
     position: fixed;
     left: 16px;
     right: 16px;
-    bottom: calc(150px + env(safe-area-inset-bottom));
+    /* top/bottom 0 + auto vertical margins + fixed height = centered vertically */
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
     width: auto;
-    height: min(80vh, calc(100vh - 180px));
+    height: min(80vh, 640px);
+    height: min(80dvh, 640px);
   }
 }
 
