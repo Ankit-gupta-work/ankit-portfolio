@@ -14,5 +14,4 @@
 
 @media (max-width: 1020px){
   .feat{grid-template-columns:minmax(0,1fr) !important}
-  .g2{grid-template-columns:minmax(0,1fr) !important}
 }

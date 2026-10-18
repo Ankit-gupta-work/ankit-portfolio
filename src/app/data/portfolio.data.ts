@@ -18,14 +18,6 @@ export interface ProjectTag {
   label: string;
 }
 
-export interface SecondaryProject {
-  index: string;
-  title: string;
-  description: string;
-  tags: string[];
-  detailsHref: string;
-}
-
 export interface ThinkCard {
   titlePrefix: string;
   titleMono: string;
@@ -63,8 +55,6 @@ export const LINKS = {
   jobpingLiveDemo: 'https://jobping-blush.vercel.app/',
   jobpingCaseStudy: 'https://jobping-blush.vercel.app/',
   resume: '#',
-  inventoryDetails: '#',
-  hrPortalDetails: '#',
 };
 
 export const HERO = {
@@ -143,23 +133,6 @@ export const FEATURED_PROJECT = {
   pipelineTitle: 'Alert pipeline',
 };
 
-export const SECONDARY_PROJECTS: SecondaryProject[] = [
-  {
-    index: '02',
-    title: 'Inventory Management System',
-    description: 'Full-featured platform for SMBs. Used in production.',
-    tags: ['Angular', '.NET', 'SQL'],
-    detailsHref: LINKS.inventoryDetails,
-  },
-  {
-    index: '03',
-    title: 'HR Leave Management Portal',
-    description: 'Multi-level approval workflows. Email notifications. HR analytics dashboard.',
-    tags: ['Angular', '.NET', 'SQL'],
-    detailsHref: LINKS.hrPortalDetails,
-  },
-];
-
 export const THINK_CARDS: ThinkCard[] = [
   {
     titlePrefix: 'Why ',
@@ -231,10 +204,4 @@ export const FOOTER = {
   location: 'Vapi, Gujarat',
 };
 
-export const PLACEHOLDER_LINKS = [
-  'JobPing live demo (JobPing.liveDemo)',
-  'JobPing case study (Read the architecture / Case Study link)',
-  'Resume PDF (Resume button)',
-  'Inventory Management System Details link',
-  'HR Leave Management Portal Details link',
-];
+export const PLACEHOLDER_LINKS = ['Resume PDF (Resume button)'];
