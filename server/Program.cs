@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.HttpOverrides;
 using System.Text.Json;
 using Microsoft.Extensions.Options;
 using Server.Models;
@@ -59,6 +60,13 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+// Behind a hosting proxy (Render etc.) the real visitor IP arrives in X-Forwarded-For; without this
+// every visitor shares the proxy IP and therefore one rate-limit bucket.
+var forwardedOptions = new ForwardedHeadersOptions { ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto };
+forwardedOptions.KnownNetworks.Clear();
+forwardedOptions.KnownProxies.Clear();
+app.UseForwardedHeaders(forwardedOptions);
 
 app.UseCors("Frontend");
 
