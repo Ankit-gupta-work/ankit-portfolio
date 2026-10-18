@@ -1,56 +1,70 @@
 <section id="experience" style="padding: 96px 0; border-top: 1px solid var(--b1); scroll-margin-top: 40px">
   <div class="wrap">
-    <div class="rv" appReveal style="margin-bottom: 40px">
-      <p class="eyebrow">Experience</p>
-      <h2 class="h2">Where I've been building</h2>
+    <div class="rv" appReveal style="margin-bottom: 40px; display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap">
+      <div>
+        <p class="eyebrow">Experience</p>
+        <h2 class="h2">Where I've been building</h2>
+      </div>
+      <a class="lnk lnk-a" [href]="links.resume" download="Ankit_Gupta_Resume.pdf">Download resume <span aria-hidden="true">↓</span></a>
     </div>
 
-    <article class="card exp-card rv" appReveal style="display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 48px; padding: 36px; box-sizing: border-box">
-      <div style="display: flex; flex-direction: column">
-        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px">
-          <h3 style="margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">{{ experience.role }}</h3>
-          <span class="mono" style="display: inline-flex; align-items: center; gap: 8px; height: 28px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--b); background: var(--surface); font-size: 12px; color: var(--t1)">
-            <span class="dot pulse" style="width: 6px; height: 6px"></span>{{ experience.period }}
-          </span>
-        </div>
-        <p style="margin: 8px 0 0; font-size: 15px; color: var(--t2)">{{ experience.company }}<span class="sep">·</span>{{ experience.location }}</p>
-        <p style="margin: 20px 0 0; font-size: 16px; line-height: 1.75; color: var(--t2)">{{ experience.intro }}</p>
+    <div class="xp-row" style="display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 20px">
+      <div class="xp-rail" aria-hidden="true">
+        <span class="dot pulse" style="width: 11px; height: 11px; margin-top: 44px"></span>
+        <span class="xp-line"></span>
+      </div>
 
-        <div style="margin-top: 28px; border-bottom: 1px solid var(--b)">
-          @for (h of experience.highlights; track h.index) {
-            <div style="display: flex; gap: 16px; padding: 16px 0; border-top: 1px solid var(--b)">
-              <span class="mono" style="flex-shrink: 0; font-size: 12px; color: var(--t3)">{{ h.index }}</span>
+      <article class="card xp-card rv" appReveal style="display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 48px; padding: 36px; box-sizing: border-box">
+        <div style="display: flex; flex-direction: column">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+            <div style="display: flex; align-items: center; gap: 14px">
+              <span class="mono" style="width: 44px; height: 44px; border-radius: 10px; background: var(--elev); border: 1px solid var(--b); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500; color: var(--t1)">{{ experience.badge }}</span>
               <div>
-                <div style="font-size: 15px; font-weight: 600; color: var(--t1)">{{ h.title }}</div>
-                <div style="margin-top: 4px; font-size: 14.5px; line-height: 1.7; color: var(--t2)">{{ h.description }}</div>
+                <h3 style="margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">{{ experience.role }}</h3>
+                <p style="margin: 3px 0 0; font-size: 15px; color: var(--t2)">{{ experience.company }}<span class="sep">·</span>{{ experience.location }}</p>
               </div>
             </div>
-          }
-        </div>
-
-        <div style="margin-top: 24px; display: flex; flex-wrap: wrap; gap: 8px">
-          @for (tag of experience.tags; track tag) {
-            <span class="tag">{{ tag }}</span>
-          }
-        </div>
-
-        <div style="margin-top: 28px; display: flex; flex-wrap: wrap; gap: 24px">
-          <a class="lnk lnk-a" [href]="links.resume" download="Ankit_Gupta_Resume.pdf">Download resume <span class="arr">↓</span></a>
-          <a class="lnk" href="#contact">Get in touch <span class="arr">→</span></a>
-        </div>
-      </div>
-
-      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; align-content: start">
-        @for (tile of experience.impactTiles; track tile.label) {
-          <div class="impact-tile rvs" appReveal style="background: var(--elev); border: 1px solid var(--b); border-radius: 12px; padding: 20px">
-            <div style="font-size: 30px; font-weight: 600; letter-spacing: -0.03em; color: var(--t1)">
-              {{ tile.before }}@if (tile.after) {<span style="color: var(--code)"> → </span>{{ tile.after }}}
-            </div>
-            <div class="mono" style="margin-top: 8px; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--t2)">{{ tile.label }}</div>
-            <div style="margin-top: 6px; font-size: 13px; color: var(--t3)">{{ tile.line }}</div>
+            <span class="mono" style="display: inline-flex; align-items: center; gap: 8px; height: 28px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--b); background: var(--bg); font-size: 12px; color: var(--t1)">
+              <span class="dot" style="width: 6px; height: 6px"></span>{{ experience.period }}
+            </span>
           </div>
-        }
-      </div>
-    </article>
+          <p style="margin: 24px 0 8px; font-size: 16px; line-height: 1.75; color: var(--t2)">{{ experience.intro }}</p>
+          <div style="border-bottom: 1px solid var(--b)">
+            @for (h of experience.highlights; track h.index) {
+              <div style="display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 8px; padding: 16px 0; border-top: 1px solid var(--b)">
+                <span class="mono" style="font-size: 12px; color: var(--t3); padding-top: 2px">{{ h.index }}</span>
+                <div>
+                  <div style="font-size: 15px; font-weight: 600; color: var(--t1)">{{ h.title }}</div>
+                  <p style="margin: 4px 0 0; font-size: 14.5px; line-height: 1.7; color: var(--t2)">{{ h.description }}</p>
+                </div>
+              </div>
+            }
+          </div>
+          <div style="margin-top: 24px; display: flex; flex-wrap: wrap; gap: 8px">
+            @for (tag of experience.tags; track tag) {
+              <span class="tag">{{ tag }}</span>
+            }
+          </div>
+        </div>
+
+        <div class="xp-side" style="display: flex; flex-direction: column; gap: 12px">
+          <p class="eyebrow" style="font-size: 11px">Impact</p>
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+            @for (tile of experience.impactTiles; track tile.label) {
+              <div class="xp-tile rvs" appReveal>
+                <div style="font-size: 20px; font-weight: 600; letter-spacing: -0.03em; color: var(--t1); white-space: nowrap">
+                  {{ tile.before }}@if (tile.after) {<span style="color: var(--code)"> → </span>{{ tile.after }}}
+                </div>
+                <div class="mono" style="margin-top: 8px; font-size: 10.5px; letter-spacing: .07em; text-transform: uppercase; color: var(--t2)">{{ tile.label }}</div>
+                <div style="margin-top: 4px; font-size: 13px; line-height: 1.45; color: var(--t3)">{{ tile.line }}</div>
+              </div>
+            }
+          </div>
+          <div class="xp-note mono" style="margin-top: 4px; padding: 16px; border-radius: 12px; border: 1px dashed var(--bh); font-size: 12px; line-height: 1.6; color: var(--t2)">
+            <span style="color: var(--code)">$</span> {{ experience.notePre }}<span style="color: var(--t1)">{{ experience.noteBold }}</span>{{ experience.notePost }}
+          </div>
+        </div>
+      </article>
+    </div>
   </div>
 </section>

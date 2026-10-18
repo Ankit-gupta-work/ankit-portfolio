@@ -67,8 +67,8 @@ export interface ContactRow {
 }
 
 export const NAV_LINKS: NavLink[] = [
-  { label: 'Work', href: '#work' },
   { label: 'Experience', href: '#experience' },
+  { label: 'Work', href: '#work' },
   { label: 'Stack', href: '#stack' },
   { label: 'About', href: '#think' },
   { label: 'Contact', href: '#contact' },
@@ -90,10 +90,12 @@ export const HERO = {
   headlineLine1: 'I build systems',
   headlineLine2: 'that scale.',
   subhead: 'Not just features that ship.',
-  stackLines: [
-    ['Angular', '.NET Core', 'PostgreSQL'],
-    ['Redis', 'RabbitMQ', 'Docker'],
-  ],
+  heroStack: [
+    ['Angular', 'TypeScript', 'RxJS'],
+    ['.NET Core', 'C#', 'REST APIs'],
+    ['PostgreSQL', 'SQL Server', 'Redis'],
+    ['RabbitMQ', 'Docker', 'CI/CD'],
+  ] as string[][],
   stats: [
     { value: '3 years', label: 'production<br>experience' },
     { value: '5+ products', label: 'shipped' },
@@ -143,18 +145,19 @@ export const CURRENTLY_BUILDING = {
 };
 
 export const EXPERIENCE = {
+  badge: 'SN',
   role: 'Full Stack Developer',
   period: 'May 2023 – Present',
   company: 'Setu Net Pvt Ltd',
   location: 'Vapi, Gujarat',
   intro:
-    'I own the full product lifecycle for our internal platforms: gathering requirements, building features, deploying to IIS on Windows and Ubuntu on Linux, and supporting them in production.',
+    'I design and build our internal platforms end to end — shaping requirements together with the team and stakeholders, developing the features, deploying them to IIS (Windows) and Ubuntu (Linux) servers, and supporting them in production.',
   highlights: [
     {
       index: '01',
       title: 'Configuration-driven workflow platform',
       description:
-        'Admins define approval chains, escalations, form routing, role-based access and email notifications from the UI, with zero code changes or redeployments per workflow.',
+        'Admins define approval chains, escalations, form routing, role-based access and email notifications from the UI — zero code changes or redeploys per workflow.',
     },
     {
       index: '02',
@@ -166,22 +169,25 @@ export const EXPERIENCE = {
       index: '03',
       title: 'Dual-database support',
       description:
-        "One codebase running on both PostgreSQL and SQL Server. I'm currently leading the production schema migration to PostgreSQL.",
+        "One codebase running on PostgreSQL and SQL Server — and I'm leading the production schema migration to PostgreSQL.",
     },
     {
       index: '04',
       title: 'Reusable Angular component library',
       description:
-        "Dynamic forms, modals and dashboards, now the standard across the company's internal products.",
+        "Dynamic forms, modals and dashboards — now the standard across the company's internal products.",
     },
   ] as ExperienceHighlight[],
   tags: ['.NET Core', 'Angular', 'PostgreSQL', 'SQL Server', 'Stored Procedures', 'IIS', 'Ubuntu', 'Docker'],
   impactTiles: [
-    { before: 'Weeks', after: '2h', label: 'MODULE SETUP', line: 'New module setup by a non-technical admin' },
-    { before: '8.4s', after: '80ms', label: 'QUERY TIME', line: 'Role-privilege query, about 100× faster' },
-    { before: '2 DBs', label: 'ONE CODEBASE', line: 'PostgreSQL and SQL Server' },
-    { before: '0', label: 'REDEPLOYS PER WORKFLOW', line: 'New workflows ship from config' },
+    { before: 'Weeks', after: '2h', label: 'Module setup', line: 'By a non-technical admin' },
+    { before: '8.4s', after: '80ms', label: 'Query time', line: 'Role-privilege query, ~100× faster' },
+    { before: '2 DBs', label: 'One codebase', line: 'PostgreSQL + SQL Server' },
+    { before: '0', label: 'Redeploys', line: 'Per new workflow' },
   ] as ImpactTile[],
+  notePre: 'shifted from shipping features to building ',
+  noteBold: 'dynamic, performance-driven',
+  notePost: ' systems',
 };
 
 export const FEATURED_PROJECT = {

@@ -13,7 +13,7 @@
 ## Experience
 
 ### Full Stack Developer, Setu Net Pvt Ltd, Vapi, Gujarat (May 2023 – Present)
-- I own the full product lifecycle for our internal platforms: gathering requirements, building features, deploying to IIS on Windows and Ubuntu on Linux, and supporting them in production.
+- I design and build our internal platforms end to end — shaping requirements together with the team and stakeholders, developing the features, deploying them to IIS (Windows) and Ubuntu (Linux) servers, and supporting them in production.
 - Configuration-driven workflow platform: admins define approval chains, escalations, form routing, role-based access and email notifications from the UI, with zero code changes or redeployments per workflow.
 - Visual Form Builder: a step-by-step builder that creates tables, views, workflow routes, menu entries and role access in a single transaction.
 - Dual-database support: one codebase running on both PostgreSQL and SQL Server. I'm currently leading the production schema migration to PostgreSQL.
