@@ -25,6 +25,3 @@
 @media (max-width: 1020px){
   .diagram{transform:scale(.8);transform-origin:top left;justify-self:start !important;margin-bottom:-100px}
 }
-@media (max-width: 720px){
-  .diagram{transform:scale(.62);margin-bottom:-200px}
-}

@@ -3,7 +3,3 @@
 @media (max-width: 1020px){
   .hero-grid{grid-template-columns:minmax(0,1fr) !important;min-height:0 !important}
 }
-@media (max-width: 720px){
-  .stats{flex-direction:column;align-items:flex-start !important;gap:20px !important}
-  .stats .vd{display:none}
-}

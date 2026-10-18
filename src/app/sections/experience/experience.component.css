@@ -5,4 +5,3 @@
 .xp-tile:hover{border-color:var(--bh)}
 .xp-side{position:sticky;top:96px;align-self:start}
 @media (max-width: 1020px){.xp-card{grid-template-columns:minmax(0,1fr) !important}.xp-side{position:static}}
-@media (max-width: 720px){.xp-row{grid-template-columns:minmax(0,1fr) !important}.xp-rail{display:none}.xp-card{padding:24px !important}}

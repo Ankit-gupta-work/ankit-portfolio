@@ -11,4 +11,6 @@ import { HERO_STACK, HERO_STACK_ARIA_LABEL } from '../../data/portfolio.data';
 export class IsometricStackComponent {
   readonly layers = HERO_STACK;
   readonly ariaLabel = HERO_STACK_ARIA_LABEL;
+  // Visual top-to-bottom order for the mobile legend (layers[] is bottom-first for the 3D stack).
+  readonly legendLayers = [...HERO_STACK].reverse();
 }

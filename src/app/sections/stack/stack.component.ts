@@ -8,7 +8,6 @@ import { AI_QUOTE, STACK_ROWS } from '../../data/portfolio.data';
   imports: [RevealDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './stack.component.html',
-  styleUrl: './stack.component.css',
 })
 export class StackComponent {
   readonly rows = STACK_ROWS;
