@@ -20,6 +20,7 @@ const COUNTER_THRESHOLD = 400;
 const AUTO_SCROLL_THRESHOLD_PX = 80;
 
 const SUGGESTIONS = [
+  "What's his current role at Setu Net Pvt Ltd?",
   "What's JobPing's architecture?",
   'Which stack does he use daily?',
   'Is he open to relocating?',
@@ -52,6 +53,11 @@ export class ChatWidgetComponent implements AfterViewChecked {
   readonly counterThreshold = COUNTER_THRESHOLD;
 
   readonly isStreaming = this.chat.isStreaming;
+  /** Suggestions the visitor hasn't already asked, shown again under the latest answer. */
+  readonly remainingSuggestions = computed(() => {
+    const asked = new Set(this.chat.messages().filter((m) => m.role === 'user').map((m) => m.content));
+    return SUGGESTIONS.filter((s) => !asked.has(s));
+  });
   readonly messages: Signal<RenderedMessage[]> = computed(() =>
     this.chat.messages().map((m) => ({ ...m, html: renderSafeMarkdown(m.content) })),
   );

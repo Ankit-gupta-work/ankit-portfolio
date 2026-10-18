@@ -62,6 +62,14 @@
           </div>
         }
       }
+
+      @if (messages().length > 0 && !isStreaming() && remainingSuggestions().length > 0) {
+        <div class="chips follow-up">
+          @for (suggestion of remainingSuggestions(); track suggestion) {
+            <button type="button" class="tag chip-btn" (click)="sendSuggestion(suggestion)">{{ suggestion }}</button>
+          }
+        </div>
+      }
     </div>
 
     <div class="input-row">

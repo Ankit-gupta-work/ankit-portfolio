@@ -36,14 +36,26 @@ export class ThemeService {
   toggle(): void {
     if (!this.isBrowser || !this.hostEl) return;
     const next: Theme = this.theme() === 'light' ? 'dark' : 'light';
-    this.renderer.addClass(this.hostEl, 'theming');
-    this.theme.set(next);
-    this.applyClass(next);
     try {
       localStorage.setItem(STORAGE_KEY, next);
     } catch {
       /* storage unavailable */
     }
+
+    const doc = document as Document & { startViewTransition?: (cb: () => void) => unknown };
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (doc.startViewTransition && !reduceMotion) {
+      // One GPU crossfade of the whole page: smooth even for gradients/grid that can't transition.
+      doc.startViewTransition(() => {
+        this.theme.set(next);
+        this.applyClass(next);
+      });
+      return;
+    }
+
+    this.renderer.addClass(this.hostEl, 'theming');
+    this.theme.set(next);
+    this.applyClass(next);
     clearTimeout(this.theming);
     this.theming = setTimeout(() => {
       if (this.hostEl) this.renderer.removeClass(this.hostEl, 'theming');

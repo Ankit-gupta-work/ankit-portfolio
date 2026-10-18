@@ -52,8 +52,8 @@
 
 ## Contact
 - Email: ankitjguptaforwork@gmail.com
-- GitHub: https://github.com/ankit-for-work
-- LinkedIn: https://linkedin.com/in/ankit-gupta
+- GitHub: https://github.com/Ankit-gupta-work
+- LinkedIn: https://www.linkedin.com/in/ankit-gupta-489113253
 
 ## Things the assistant must NOT answer
 - Salary, current CTC or expected CTC → "Ankit prefers to discuss compensation directly — email him."

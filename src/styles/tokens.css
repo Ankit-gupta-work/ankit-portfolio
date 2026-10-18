@@ -27,6 +27,10 @@
 /* smooth 200ms theme switch (only while switching, so hover motion stays intact) */
 .pf.theming,.pf.theming *,.pf.theming *::before,.pf.theming *::after{transition:background-color .2s ease,color .2s ease,border-color .2s ease,box-shadow .2s ease,fill .2s ease,stroke .2s ease !important}
 
+/* View Transitions crossfade for the theme switch */
+::view-transition-old(root),::view-transition-new(root){animation-duration:.45s;animation-timing-function:cubic-bezier(.4,0,.2,1);mix-blend-mode:normal}
+@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none !important}}
+
 /* SSR flash prevention: html.pf-light-boot is set by an inline script in index.html
    before the app-root content paints, from the saved theme in localStorage. It mirrors
    the .pf.light variables above so first paint matches, until ThemeService applies
