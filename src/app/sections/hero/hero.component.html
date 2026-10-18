@@ -19,13 +19,15 @@
         }
       </div>
       <div class="fu hero-cta" style="margin-top: 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; animation-delay: 400ms">
-        <a class="btn btn-p" href="#building">View JobPing
+        <a class="btn btn-p" [href]="links.resume" target="_blank" rel="noopener noreferrer">View Resume
           <svg class="ic" width="14" height="14" aria-hidden="true"><path d="M2.5 7h9M8 3.5L11.5 7L8 10.5" style="fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round"></path></svg>
         </a>
-        <a class="btn btn-g" [href]="links.github">GitHub
+        <a class="btn btn-g" [href]="links.github" target="_blank" rel="noopener noreferrer">GitHub
           <svg class="ic" width="14" height="14" aria-hidden="true"><path d="M4 10L10 4M5 4h5v5" style="fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round"></path></svg>
         </a>
-        <a class="btn btn-t" [href]="links.resume" target="_blank" rel="noopener noreferrer">Resume</a>
+        <a class="btn btn-g" [href]="links.linkedin" target="_blank" rel="noopener noreferrer">LinkedIn
+          <svg class="ic" width="14" height="14" aria-hidden="true"><path d="M4 10L10 4M5 4h5v5" style="fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round"></path></svg>
+        </a>
       </div>
       <div class="fu stats" style="margin-top: 56px; display: flex; align-items: stretch; gap: 32px; animation-delay: 480ms">
         @for (stat of hero.stats; track stat.value; let last = $last) {
