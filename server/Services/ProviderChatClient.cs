@@ -40,19 +40,22 @@ public class ProviderChatClient : IProviderChatClient
         using var timeoutCts = new CancellationTokenSource(ProviderTimeout);
         using var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, timeoutCts.Token);
 
-        var payload = new
+        var payload = new Dictionary<string, object?>
         {
-            model = _options.Model,
-            messages = BuildMessages(systemPrompt, messages),
-            stream = true,
-            max_tokens = _options.MaxTokens,
-            temperature = _options.Temperature,
-            stream_options = new { include_usage = true },
-            // Some reasoning-capable models (e.g. Nemotron, DeepSeek-R1 family) otherwise stream
-            // their internal chain-of-thought as regular content. This is an OpenRouter extension;
-            // OpenAI-compatible providers that don't recognize it simply ignore the extra field.
-            reasoning = new { exclude = true },
+            ["model"] = _options.Model,
+            ["messages"] = BuildMessages(systemPrompt, messages),
+            ["stream"] = true,
+            ["max_tokens"] = _options.MaxTokens,
+            ["temperature"] = _options.Temperature,
+            ["stream_options"] = new { include_usage = true },
         };
+        // Some reasoning-capable models (e.g. Nemotron, DeepSeek-R1 family) otherwise stream their
+        // internal chain-of-thought as regular content. `reasoning` is an OpenRouter-only extension;
+        // stricter providers (e.g. Groq) reject unknown fields with a 400, so only send it there.
+        if (_options.BaseUrl.Contains("openrouter.ai", StringComparison.OrdinalIgnoreCase))
+        {
+            payload["reasoning"] = new { exclude = true };
+        }
 
         using var request = new HttpRequestMessage(HttpMethod.Post, $"{_options.BaseUrl.TrimEnd('/')}/chat/completions")
         {
