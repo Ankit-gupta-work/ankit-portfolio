@@ -4,12 +4,8 @@
   </div>
 
   <div class="st-scene" aria-hidden="true" style="left: 65px; top: 278px">
-    @for (layer of layers; track layer.title) {
-      <div
-        class="st-plate"
-        [class.ai]="layer.isAi"
-        [style]="'--z: ' + layer.z + 'px; animation: stBreathe' + layer.breathe + ' 6s ease-in-out infinite, stFlash 4s linear ' + layer.flashDelay + ' infinite backwards, fadeIn .9s ease .5s both'"
-      >
+    @for (layer of layers; track layer.title; let i = $index) {
+      <div class="st-plate" [class]="'st-p' + i" [class.ai]="layer.isAi">
         <span class="st-grid"></span>
       </div>
     }

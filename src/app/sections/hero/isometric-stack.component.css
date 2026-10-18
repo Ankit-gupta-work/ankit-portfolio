@@ -2,6 +2,13 @@
 .st-scene{position:absolute;width:200px;height:200px;transform:rotateX(60deg) rotateZ(-45deg);transform-style:preserve-3d}
 .st-plate{position:absolute;inset:0;border-radius:16px;border:1px solid var(--bh);background:color-mix(in srgb,var(--node) 78%,transparent);transform:translateZ(var(--z))}
 .st-plate.ai{border-color:color-mix(in srgb,var(--code) 55%,transparent);background:color-mix(in srgb,var(--code) 7%,color-mix(in srgb,var(--node) 80%,transparent))}
+/* per-layer animation lives in CSS classes (not inline styles) so stFlash's fill-mode behaves
+   identically for every plate regardless of how the template binds the class */
+.st-p0{--z:0px;animation:stBreathe4 6s ease-in-out infinite,stFlash 4s linear 3.92s infinite,fadeIn .9s ease .5s both}
+.st-p1{--z:52px;animation:stBreathe3 6s ease-in-out infinite,stFlash 4s linear 3.49s infinite,fadeIn .9s ease .5s both}
+.st-p2{--z:104px;animation:stBreathe2 6s ease-in-out infinite,stFlash 4s linear 3.06s infinite,fadeIn .9s ease .5s both}
+.st-p3{--z:156px;animation:stBreathe1 6s ease-in-out infinite,stFlash 4s linear 2.63s infinite,fadeIn .9s ease .5s both}
+.st-p4{--z:208px;animation:stBreathe0 6s ease-in-out infinite,stFlash 4s linear 2.2s infinite,fadeIn .9s ease .5s both}
 .st-grid{position:absolute;inset:14px;border-radius:8px;background-image:linear-gradient(to right,var(--b) 1px,transparent 1px),linear-gradient(to bottom,var(--b) 1px,transparent 1px);background-size:22px 22px}
 .st-pkt{position:absolute;left:91px;top:91px;width:18px;height:18px;border-radius:4px;background:var(--code);box-shadow:0 0 18px 4px color-mix(in srgb,var(--code) 55%,transparent);opacity:0;animation:stDrop 4s cubic-bezier(.45,0,.55,1) 1.6s infinite backwards}
 .st-lbl{position:absolute;left:320px;display:flex;align-items:center;gap:12px;white-space:nowrap}

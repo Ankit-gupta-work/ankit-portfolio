@@ -106,10 +106,7 @@ export const HERO = {
 export interface HeroStackLayer {
   title: string;
   subtitle: string;
-  z: number;
   isAi: boolean;
-  breathe: number;
-  flashDelay: string;
   labelTop: number;
   labelDelay: string;
 }
@@ -118,12 +115,14 @@ export const HERO_STACK_ARIA_LABEL =
   'How I build systems: five layers, interface, AI, services, events and data, with a request passing through each one.';
 
 // Bottom-first (Data -> Interface) so later plates paint on top of earlier ones in the 3D stack.
+// DOM position (0-4) maps directly to the st-p0..st-p4 CSS classes, which hold each plate's
+// --z, breathe and flash-delay values — see isometric-stack.component.css.
 export const HERO_STACK: HeroStackLayer[] = [
-  { title: 'Data', subtitle: 'storage · cache · integrity', z: 0, isAi: false, breathe: 4, flashDelay: '3.92s', labelTop: 359, labelDelay: '1.2s' },
-  { title: 'Events', subtitle: 'queues · async · retries', z: 52, isAi: false, breathe: 3, flashDelay: '3.49s', labelTop: 310, labelDelay: '1.1s' },
-  { title: 'Services', subtitle: 'APIs · auth · business logic', z: 104, isAi: false, breathe: 2, flashDelay: '3.06s', labelTop: 261, labelDelay: '1.0s' },
-  { title: 'AI', subtitle: 'LLMs · assistants · automation', z: 156, isAi: true, breathe: 1, flashDelay: '2.63s', labelTop: 212, labelDelay: '0.9s' },
-  { title: 'Interface', subtitle: 'UI · state · experience', z: 208, isAi: false, breathe: 0, flashDelay: '2.2s', labelTop: 163, labelDelay: '0.8s' },
+  { title: 'Data', subtitle: 'storage · cache · integrity', isAi: false, labelTop: 359, labelDelay: '1.2s' },
+  { title: 'Events', subtitle: 'queues · async · retries', isAi: false, labelTop: 310, labelDelay: '1.1s' },
+  { title: 'Services', subtitle: 'APIs · auth · business logic', isAi: false, labelTop: 261, labelDelay: '1.0s' },
+  { title: 'AI', subtitle: 'LLMs · assistants · automation', isAi: true, labelTop: 212, labelDelay: '0.9s' },
+  { title: 'Interface', subtitle: 'UI · state · experience', isAi: false, labelTop: 163, labelDelay: '0.8s' },
 ];
 
 export const CURRENTLY_BUILDING = {
