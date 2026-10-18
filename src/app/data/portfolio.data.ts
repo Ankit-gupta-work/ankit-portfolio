@@ -60,8 +60,8 @@ export const LINKS = {
   github: 'https://github.com/ankit-for-work',
   linkedin: 'https://linkedin.com/in/ankit-gupta',
   email: 'ankitjguptaforwork@gmail.com',
-  jobpingLiveDemo: '#',
-  jobpingCaseStudy: '#',
+  jobpingLiveDemo: 'https://jobping-blush.vercel.app/',
+  jobpingCaseStudy: 'https://jobping-blush.vercel.app/',
   resume: '#',
   inventoryDetails: '#',
   hrPortalDetails: '#',
@@ -85,34 +85,28 @@ export const HERO = {
   ] as StatItem[],
 };
 
-export const ARCH_DIAGRAM = {
-  ariaLabel:
-    'JobPing architecture: job sources feed the API, which publishes to RabbitMQ; the match worker consumes messages and sends email alerts.',
-  sourcesLabel: '3 job sources · every 2h',
-  publishLabel: 'publish()',
-  consumeLabel: 'consume()',
-  alertsLabel: 'email alerts → users',
-  nodes: [
-    {
-      index: '01 · API',
-      title: 'JobPing.Api',
-      titleColor: 'code',
-      sub: 'ASP.NET Core 8',
-    },
-    {
-      index: '02 · BROKER',
-      title: 'RabbitMQ',
-      titleColor: 't1',
-      sub: 'wakes on message',
-    },
-    {
-      index: '03 · WORKER',
-      title: 'Match Worker',
-      titleColor: 't1',
-      sub: 'score · dedupe · alert',
-    },
-  ],
-};
+export interface HeroStackLayer {
+  title: string;
+  subtitle: string;
+  z: number;
+  isAi: boolean;
+  breathe: number;
+  flashDelay: string;
+  labelTop: number;
+  labelDelay: string;
+}
+
+export const HERO_STACK_ARIA_LABEL =
+  'How I build systems: five layers, interface, AI, services, events and data, with a request passing through each one.';
+
+// Bottom-first (Data -> Interface) so later plates paint on top of earlier ones in the 3D stack.
+export const HERO_STACK: HeroStackLayer[] = [
+  { title: 'Data', subtitle: 'storage · cache · integrity', z: 0, isAi: false, breathe: 4, flashDelay: '3.92s', labelTop: 359, labelDelay: '1.2s' },
+  { title: 'Events', subtitle: 'queues · async · retries', z: 52, isAi: false, breathe: 3, flashDelay: '3.49s', labelTop: 310, labelDelay: '1.1s' },
+  { title: 'Services', subtitle: 'APIs · auth · business logic', z: 104, isAi: false, breathe: 2, flashDelay: '3.06s', labelTop: 261, labelDelay: '1.0s' },
+  { title: 'AI', subtitle: 'LLMs · assistants · automation', z: 156, isAi: true, breathe: 1, flashDelay: '2.63s', labelTop: 212, labelDelay: '0.9s' },
+  { title: 'Interface', subtitle: 'UI · state · experience', z: 208, isAi: false, breathe: 0, flashDelay: '2.2s', labelTop: 163, labelDelay: '0.8s' },
+];
 
 export const CURRENTLY_BUILDING = {
   eyebrow: 'Currently building',

@@ -11,7 +11,7 @@ public class AiOptions
     public string Model { get; set; } = string.Empty;
     public int MaxTokens { get; set; } = 400;
     public double Temperature { get; set; } = 0.3;
-    public string AllowedOrigins { get; set; } = "http://localhost:4200";
+    public string AllowedOrigins { get; set; } = "http://localhost:4200,http://localhost:4201";
     public string? RedisUrl { get; set; }
     public int RateLimitPerHour { get; set; } = 15;
 
@@ -36,7 +36,7 @@ public class AiOptions
             Model = configuration[RequiredModelVar] ?? string.Empty,
             MaxTokens = TryParseInt(configuration["AI_MAX_TOKENS"], 400),
             Temperature = TryParseDouble(configuration["AI_TEMPERATURE"], 0.3),
-            AllowedOrigins = configuration["ALLOWED_ORIGINS"] ?? "http://localhost:4200",
+            AllowedOrigins = configuration["ALLOWED_ORIGINS"] ?? "http://localhost:4200,http://localhost:4201",
             RedisUrl = configuration["REDIS_URL"],
             RateLimitPerHour = TryParseInt(configuration["RATE_LIMIT_PER_HOUR"], 15),
         };

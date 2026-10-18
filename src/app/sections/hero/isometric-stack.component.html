@@ -1,0 +1,36 @@
+<div class="diagram par-slow" role="img" [attr.aria-label]="ariaLabel" style="position: relative; width: 520px; height: 520px; justify-self: end">
+  <div class="mono fu" style="position: absolute; left: 0; top: 24px; display: flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--t2); animation-delay: .6s">
+    <span class="dot pulse"></span>one request, every layer
+  </div>
+
+  <div class="st-scene" aria-hidden="true" style="left: 65px; top: 278px">
+    @for (layer of layers; track layer.title) {
+      <div
+        class="st-plate"
+        [class.ai]="layer.isAi"
+        [style]="'--z: ' + layer.z + 'px; animation: stBreathe' + layer.breathe + ' 6s ease-in-out infinite, stFlash 4s linear ' + layer.flashDelay + ' infinite backwards, fadeIn .9s ease .5s both'"
+      >
+        <span class="st-grid"></span>
+      </div>
+    }
+    <span class="st-pkt"></span>
+  </div>
+
+  @for (layer of layers; track layer.title) {
+    <div class="st-lbl fu" [style.top.px]="layer.labelTop" [style.animation-delay]="layer.labelDelay">
+      <span class="st-lead"></span>
+      <div>
+        <div
+          style="display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; letter-spacing: -0.01em"
+          [style.color]="layer.isAi ? 'var(--code)' : null"
+        >
+          {{ layer.title }}
+          @if (layer.isAi) {
+            <span class="st-new mono">new</span>
+          }
+        </div>
+        <div class="mono" style="margin-top: 3px; font-size: 11px; color: var(--t2)">{{ layer.subtitle }}</div>
+      </div>
+    </div>
+  }
+</div>
