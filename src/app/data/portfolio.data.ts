@@ -97,8 +97,7 @@ export const HERO = {
     ['RabbitMQ', 'Docker', 'CI/CD'],
   ] as string[][],
   stats: [
-    { value: '3 years', label: 'production<br>experience' },
-    { value: '5+ products', label: 'shipped' },
+    { value: '3+ years', label: 'production<br>experience' },
     { value: 'Full cycle', label: 'design → deploy' },
   ] as StatItem[],
 };
