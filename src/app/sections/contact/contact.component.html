@@ -5,7 +5,7 @@
 
     <div class="rv" appReveal style="margin-top: 56px; border-top: 1px solid var(--b)">
       @for (row of rows; track row.label) {
-        <a class="crow" [href]="row.href">
+        <a class="crow" [href]="row.href" target="_blank" rel="noopener noreferrer">
           <span style="font-size: 14px; color: var(--t2)">{{ row.label }}</span>
           <span class="arr">→</span>
           <span style="font-size: 18px; font-weight: 500; overflow-wrap: anywhere">{{ row.display }}</span>
