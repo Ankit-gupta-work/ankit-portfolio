@@ -227,15 +227,15 @@
 
 @media (max-width: 720px) {
   :host {
-    inset: auto 16px 16px auto;
+    inset: auto 16px calc(86px + env(safe-area-inset-bottom)) auto;
   }
   .panel {
     position: fixed;
     left: 16px;
     right: 16px;
-    bottom: 84px;
+    bottom: calc(150px + env(safe-area-inset-bottom));
     width: auto;
-    height: 80vh;
+    height: min(80vh, calc(100vh - 180px));
   }
 }
 
