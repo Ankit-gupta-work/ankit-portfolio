@@ -18,6 +18,31 @@ export interface ProjectTag {
   label: string;
 }
 
+export interface SecondaryProject {
+  index: string;
+  title: string;
+  description: string;
+  tags: string[];
+  problemQuestion: string;
+  problemAnswerPre: string;
+  problemAnswerBold?: string;
+  problemAnswerPost?: string;
+  detailsHref: string;
+}
+
+export interface ExperienceHighlight {
+  index: string;
+  title: string;
+  description: string;
+}
+
+export interface ImpactTile {
+  before: string;
+  after?: string;
+  label: string;
+  line: string;
+}
+
 export interface ThinkCard {
   titlePrefix: string;
   titleMono: string;
@@ -43,6 +68,7 @@ export interface ContactRow {
 
 export const NAV_LINKS: NavLink[] = [
   { label: 'Work', href: '#work' },
+  { label: 'Experience', href: '#experience' },
   { label: 'Stack', href: '#stack' },
   { label: 'About', href: '#think' },
   { label: 'Contact', href: '#contact' },
@@ -54,7 +80,7 @@ export const LINKS = {
   email: 'ankitjguptaforwork@gmail.com',
   jobpingLiveDemo: 'https://jobping-blush.vercel.app/',
   jobpingCaseStudy: 'https://jobping-blush.vercel.app/',
-  resume: '#',
+  resume: '/Ankit_Gupta_Resume.pdf',
 };
 
 export const HERO = {
@@ -116,6 +142,48 @@ export const CURRENTLY_BUILDING = {
   waitingText: 'waiting for next run',
 };
 
+export const EXPERIENCE = {
+  role: 'Full Stack Developer',
+  period: 'May 2023 – Present',
+  company: 'Setu Net Pvt Ltd',
+  location: 'Vapi, Gujarat',
+  intro:
+    'I own the full product lifecycle for our internal platforms: gathering requirements, building features, deploying to IIS on Windows and Ubuntu on Linux, and supporting them in production.',
+  highlights: [
+    {
+      index: '01',
+      title: 'Configuration-driven workflow platform',
+      description:
+        'Admins define approval chains, escalations, form routing, role-based access and email notifications from the UI, with zero code changes or redeployments per workflow.',
+    },
+    {
+      index: '02',
+      title: 'Visual Form Builder',
+      description:
+        'A step-by-step builder that creates tables, views, workflow routes, menu entries and role access in a single transaction.',
+    },
+    {
+      index: '03',
+      title: 'Dual-database support',
+      description:
+        "One codebase running on both PostgreSQL and SQL Server. I'm currently leading the production schema migration to PostgreSQL.",
+    },
+    {
+      index: '04',
+      title: 'Reusable Angular component library',
+      description:
+        "Dynamic forms, modals and dashboards, now the standard across the company's internal products.",
+    },
+  ] as ExperienceHighlight[],
+  tags: ['.NET Core', 'Angular', 'PostgreSQL', 'SQL Server', 'Stored Procedures', 'IIS', 'Ubuntu', 'Docker'],
+  impactTiles: [
+    { before: 'Weeks', after: '2h', label: 'MODULE SETUP', line: 'New module setup by a non-technical admin' },
+    { before: '8.4s', after: '80ms', label: 'QUERY TIME', line: 'Role-privilege query, about 100× faster' },
+    { before: '2 DBs', label: 'ONE CODEBASE', line: 'PostgreSQL and SQL Server' },
+    { before: '0', label: 'REDEPLOYS PER WORKFLOW', line: 'New workflows ship from config' },
+  ] as ImpactTile[],
+};
+
 export const FEATURED_PROJECT = {
   index: '01 — FEATURED',
   title: 'JobPing',
@@ -132,6 +200,31 @@ export const FEATURED_PROJECT = {
   ] as PipelineStep[],
   pipelineTitle: 'Alert pipeline',
 };
+
+export const SECONDARY_PROJECTS: SecondaryProject[] = [
+  {
+    index: '02',
+    title: 'Workflow Automation Platform',
+    description:
+      'Configuration-driven platform that automated most internal operations. Approval chains, escalation rules, form routing and notifications are defined by admins in the UI, not in code.',
+    tags: ['.NET Core', 'Angular', 'PostgreSQL', 'SQL Server'],
+    problemQuestion: 'How do you let non-developers ship new workflows safely?',
+    problemAnswerPre: 'Every rule lives in configuration tables the engine reads at runtime, so a new workflow is data, not a deployment.',
+    detailsHref: '#',
+  },
+  {
+    index: '03',
+    title: 'Visual Form Builder',
+    description:
+      'Step-by-step builder (list → mail → escalation → review → form) that turns an admin\'s choices into a working module.',
+    tags: ['.NET Core', 'Angular', 'SQL', 'Transactions'],
+    problemQuestion: 'What if setup fails halfway?',
+    problemAnswerPre: 'Tables, views, workflow routes, sidebar menu entries and role grants are all created in a ',
+    problemAnswerBold: 'single database transaction',
+    problemAnswerPost: '. Either the whole module exists or nothing does.',
+    detailsHref: '#',
+  },
+];
 
 export const THINK_CARDS: ThinkCard[] = [
   {
@@ -177,6 +270,15 @@ export const THINK_CARDS: ThinkCard[] = [
     kind: 'chips',
     chips: ['API key server-side', 'Redis rate limiting', 'streamed answers'],
   },
+  {
+    titlePrefix: 'Why ',
+    titleMono: 'configuration',
+    titleSuffix: ' over code?',
+    problem: 'Every new approval flow meant a developer, a code change and a redeploy. Weeks per module.',
+    decision: 'Model workflows as data. The engine reads the config at runtime, so admins ship new flows in hours.',
+    kind: 'chips',
+    chips: ['config tables', 'runtime engine', 'role-based access'],
+  },
 ];
 
 export const STACK_ROWS: StackRow[] = [
@@ -204,4 +306,7 @@ export const FOOTER = {
   location: 'Vapi, Gujarat',
 };
 
-export const PLACEHOLDER_LINKS = ['Resume PDF (Resume button)'];
+export const PLACEHOLDER_LINKS = [
+  'Workflow Automation Platform Details link',
+  'Visual Form Builder Details link',
+];

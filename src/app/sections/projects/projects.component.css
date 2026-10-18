@@ -1,11 +1,3 @@
-.card{position:relative;background:var(--surface);border:1px solid var(--b);border-radius:16px;transition:border-color .5s var(--ease),box-shadow .5s var(--ease),transform .5s var(--ease)}
-.card:hover{border-color:var(--bh);box-shadow:0 30px 80px -40px var(--shadow)}
-.card .arr{display:inline-block;transition:transform .45s var(--ease)}
-.card:hover .arr{transform:translateX(4px)}
-.lnk{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:var(--t2);transition:color .3s var(--ease)}
-.lnk:hover{color:var(--t1)}
-.lnk-a{color:var(--t1)}
-.lnk-a:hover{color:var(--t1);opacity:.75}
 .code{font-family:var(--mono);font-size:.88em;padding:2px 7px;border-radius:6px;background:var(--bg);border:1px solid var(--b);color:var(--code);white-space:nowrap}
 .kw{color:var(--code);font-weight:500}
 .pn{color:var(--t2)}
@@ -14,4 +6,5 @@
 
 @media (max-width: 1020px){
   .feat{grid-template-columns:minmax(0,1fr) !important}
+  .g2{grid-template-columns:minmax(0,1fr) !important}
 }

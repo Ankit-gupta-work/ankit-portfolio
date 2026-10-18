@@ -5,6 +5,7 @@ import { CustomCursorComponent } from './shared/custom-cursor.component';
 import { NavComponent } from './sections/nav/nav.component';
 import { HeroComponent } from './sections/hero/hero.component';
 import { CurrentlyBuildingComponent } from './sections/currently-building/currently-building.component';
+import { ExperienceComponent } from './sections/experience/experience.component';
 import { ProjectsComponent } from './sections/projects/projects.component';
 import { HowIThinkComponent } from './sections/how-i-think/how-i-think.component';
 import { StackComponent } from './sections/stack/stack.component';
@@ -21,6 +22,7 @@ import { ChatWidgetComponent } from './shared/chat-widget/chat-widget.component'
     NavComponent,
     HeroComponent,
     CurrentlyBuildingComponent,
+    ExperienceComponent,
     ProjectsComponent,
     HowIThinkComponent,
     StackComponent,

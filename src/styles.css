@@ -40,6 +40,16 @@ a:hover{color:inherit}
 .pulse{animation:pulse 2s ease-in-out infinite}
 .spin{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--b);border-top-color:var(--ok);box-sizing:border-box;animation:spin 1s linear infinite}
 
+/* card + link styles, shared by the projects and experience sections */
+.card{position:relative;background:var(--surface);border:1px solid var(--b);border-radius:16px;transition:border-color .5s var(--ease),box-shadow .5s var(--ease),transform .5s var(--ease)}
+.card:hover{border-color:var(--bh);box-shadow:0 30px 80px -40px var(--shadow)}
+.card .arr{display:inline-block;transition:transform .45s var(--ease)}
+.card:hover .arr{transform:translateX(4px)}
+.lnk{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:var(--t2);transition:color .3s var(--ease)}
+.lnk:hover{color:var(--t1)}
+.lnk-a{color:var(--t1)}
+.lnk-a:hover{color:var(--t1);opacity:.75}
+
 /* tag chip, shared by the projects section and the chat widget's suggestion chips */
 .tag{display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:6px;border:1px solid var(--b);background:var(--bg);font-family:var(--mono);font-size:12px;color:var(--t2)}
 
