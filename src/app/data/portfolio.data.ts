@@ -75,8 +75,8 @@ export const NAV_LINKS: NavLink[] = [
 ];
 
 export const LINKS = {
-  github: 'https://github.com/ankit-for-work',
-  linkedin: 'https://linkedin.com/in/ankit-gupta',
+  github: 'https://github.com/Ankit-gupta-work',
+  linkedin: 'https://www.linkedin.com/in/ankit-gupta-489113253',
   email: 'ankitjguptaforwork@gmail.com',
   jobpingLiveDemo: 'https://jobping-blush.vercel.app/',
   jobpingCaseStudy: 'https://jobping-blush.vercel.app/',
@@ -301,8 +301,8 @@ export const AI_QUOTE = {
 
 export const CONTACT_ROWS: ContactRow[] = [
   { label: 'Email', href: `mailto:${LINKS.email}`, display: LINKS.email },
-  { label: 'GitHub', href: LINKS.github, display: 'github.com/ankit-for-work' },
-  { label: 'LinkedIn', href: LINKS.linkedin, display: 'linkedin.com/in/ankit-gupta' },
+  { label: 'GitHub', href: LINKS.github, display: 'github.com/Ankit-gupta-work' },
+  { label: 'LinkedIn', href: LINKS.linkedin, display: 'linkedin.com/in/ankit-gupta-489113253' },
 ];
 
 export const FOOTER = {
